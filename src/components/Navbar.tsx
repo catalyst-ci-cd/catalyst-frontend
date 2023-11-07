@@ -9,11 +9,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="py-4">
+    <nav className="py-8">
       <div className="container flex justify-between items-center">
         <div className="text-white uppercase text-2xl font-bold">Catalyst</div>
         <div className="hidden md:block">
-          <ul className="flex items-center gap-4 text-ternary">
+          <ul className="flex items-center gap-4 text-ternary text-lg">
             <li>
               <a href="">Home</a>
             </li>
@@ -29,7 +29,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden md:block">
-          <button className="bg-white rounded-lg py-1 px-4">Get Started</button>
+          <button className="primary-btn">Get Started</button>
         </div>
         <div className="md:hidden">
           <button onClick={handleToggleMenu} className="text-white text-3xl ">
@@ -44,7 +44,7 @@ const Navbar = () => {
             >
               <AiOutlineClose />
             </button>
-            <ul className="flex flex-col items-center gap-4 text-ternary">
+            <ul className="flex flex-col items-center gap-4 text-ternary text-lg">
               <li>
                 <a href="">Home</a>
               </li>
@@ -58,9 +58,7 @@ const Navbar = () => {
                 <a href="">Contact</a>
               </li>
             </ul>
-            <button className="bg-white rounded-lg py-1 px-4 mt-4">
-              Get Started
-            </button>
+            <button className="primary-btn mt-4">Get Started</button>
           </div>
         )}
       </div>

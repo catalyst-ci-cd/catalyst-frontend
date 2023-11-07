@@ -7,7 +7,7 @@ export default {
         primary: "#2C3333",
         secondary: "#395B64",
         ternary: "#A5C9CA",
-        accent: "#E7F6F2",
+        accent: "#D2DE32",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

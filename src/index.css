@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-btn {
+  @apply bg-white rounded-lg py-1 px-4 text-lg;
+}
+
+.secondary-btn {
+  @apply rounded-lg py-1 px-4 border border-white text-white text-lg;
+}

@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
+import Header from "@/pages/Landing/Header";
 
 const Landing = () => {
   return (
     <div className="bg-primary min-h-screen">
-      <div className="container">
-        <Navbar />
-      </div>
+      <Navbar />
+      <Header />
     </div>
   );
 };
