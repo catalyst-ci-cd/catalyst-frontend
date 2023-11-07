@@ -9,6 +9,9 @@ export default {
         ternary: "#A5C9CA",
         accent: "#E7F6F2",
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
       container: {
         center: true,
         padding: "2rem",
