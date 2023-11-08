@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
-import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
+import { AiFillGithub } from "react-icons/ai";
 import CheckBoxField from "@/components/forms/CheckBoxField";
 import TextField from "@/components/forms/TextField";
+import StyledGoogleLogin from "@/components/forms/StyledGoogleLogin";
 
 const Login = () => {
   return (
@@ -29,13 +30,7 @@ const Login = () => {
         <Divider className="text-white before:border before:border-white after:border after:border-white">
           OR
         </Divider>
-        <button
-          type="button"
-          className="flex items-center justify-center gap-3 w-full font-medium border-2 border-solid border-accent p-3 my-3 text-accent rounded-full transition-all duration-200 hover:bg-accent hover:shadow-lg hover:text-white"
-        >
-          <AiOutlineGoogle className="text-2xl" />
-          <span>Log in with Google</span>
-        </button>{" "}
+        <StyledGoogleLogin />
         <button
           type="button"
           className="flex items-center justify-center gap-3 w-full font-medium border-2 border-solid border-accent p-3 my-3 text-accent rounded-full transition-all duration-200 hover:bg-accent hover:shadow-lg hover:text-white"
