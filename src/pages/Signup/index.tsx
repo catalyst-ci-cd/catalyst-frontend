@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Divider } from "@mui/material";
-import { AiFillGithub, AiOutlineGoogle } from "react-icons/ai";
 import CheckBoxField from "@/components/forms/CheckBoxField";
 import TextField from "@/components/forms/TextField";
-import StyledGoogleLogin from "@/components/forms/StyledGoogleLogin";
+import StyledGoogleLogin from "@/components/forms/GoogleLogin";
+import StyledGithubLogin from "@/components/forms/GithubLogin";
 const Signup = () => {
   return (
     <div className="grid place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
@@ -34,13 +34,7 @@ const Signup = () => {
           OR
         </Divider>
         <StyledGoogleLogin />
-        <button
-          type="button"
-          className="flex items-center justify-center gap-3 w-full font-medium border-2 border-solid border-accent p-3 my-3 text-accent rounded-full transition-all duration-200 hover:bg-accent hover:shadow-lg hover:text-white"
-        >
-          <AiFillGithub className="text-2xl" />
-          <span>Sign up with Github</span>
-        </button>
+        <StyledGithubLogin />
         <p className="text-center my-6">
           Already have an Account?{" "}
           <Link

@@ -1,9 +1,9 @@
-import GoogleLogin from "react-google-login";
+import { default as ReactGoogleLogin } from "react-google-login";
 import { AiOutlineGoogle } from "react-icons/ai";
 
-const StyledGoogleLogin = () => {
+const GoogleLogin = () => {
   return (
-    <GoogleLogin
+    <ReactGoogleLogin
       clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
       render={({ onClick }) => (
         <button
@@ -21,4 +21,4 @@ const StyledGoogleLogin = () => {
   );
 };
 
-export default StyledGoogleLogin;
+export default GoogleLogin;
