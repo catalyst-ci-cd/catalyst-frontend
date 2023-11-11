@@ -2,7 +2,7 @@ import cellBg from "../../assets/cell.png";
 
 const Header = () => {
   return (
-    <div
+    <header
       style={{
         backgroundImage: `linear-gradient(to bottom, #2C3333 7%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, 0) 96%, #2C3333), url(${cellBg})`,
         backgroundPosition: "center",
@@ -23,7 +23,7 @@ const Header = () => {
           <button className="secondary-btn">Learn More</button>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
