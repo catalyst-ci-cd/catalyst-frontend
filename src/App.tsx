@@ -4,8 +4,6 @@ import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 
 function App() {
-
-  
   return (
     <>
       <Routes>

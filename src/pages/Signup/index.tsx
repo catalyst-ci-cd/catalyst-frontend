@@ -1,18 +1,105 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
 import CheckBoxField from "@/components/forms/CheckBoxField";
 import TextField from "@/components/forms/TextField";
 import StyledGoogleLogin from "@/components/forms/GoogleLogin";
 import StyledGithubLogin from "@/components/forms/GithubLogin";
+import { useCallback, useState } from "react";
+import { SignUpHandler } from "@/services/AccountApi";
+
+export interface ISignUpFormInput {
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const Signup = () => {
+  const [formInput, setFormInput] = useState<ISignUpFormInput>({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const navigate = useNavigate();
+  const handleChange = (value: string, name: keyof ISignUpFormInput) => {
+    setFormInput((prevData) => ({ ...prevData, [name]: value }));
+  };
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
+    async (event) => {
+      event.preventDefault();
+      const response = await SignUpHandler(formInput);
+      if (response.status === "success") {
+        navigate("/login");
+      } else {
+        console.log(response.error);
+      }
+    },
+    [formInput]
+  );
+
   return (
     <div className="grid place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
-      <form className="p-10 border border-solid border-white rounded-lg bg-[#ffffff18] shadow-2xl">
+      <form
+        className="p-10 py-5 border border-solid border-white rounded-lg bg-[#ffffff18] shadow-2xl"
+        onSubmit={handleSubmit}
+      >
         <h2 className="text-3xl font-semibold my-4">Create your Account!</h2>
         <p className="text-[#aaa] my-4">Please fill in the Details below.</p>
-        <TextField type="text" placeholder="Khaled Hegazy" />
-        <TextField type="text" placeholder="example@youremail.com" />
-        <TextField type="password" placeholder="● ● ● ● ● ● ●" />
+        <div className="flex gap-3 -my-5">
+          <TextField
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formInput.firstName}
+            setValue={(value) => handleChange(value, "firstName")}
+            required={true}
+          />
+          <TextField
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formInput.lastName}
+            setValue={(value) => handleChange(value, "lastName")}
+            required={true}
+          />
+        </div>
+        <TextField
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formInput.username}
+          setValue={(value) => handleChange(value, "username")}
+          required={true}
+        />
+        <TextField
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formInput.email}
+          setValue={(value) => handleChange(value, "email")}
+          required={true}
+        />
+        <TextField
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formInput.password}
+          setValue={(value) => handleChange(value, "password")}
+          required={true}
+        />
+        <TextField
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={formInput.confirmPassword}
+          setValue={(value) => handleChange(value, "confirmPassword")}
+          required={true}
+        />
         <CheckBoxField
           label={
             <p>
