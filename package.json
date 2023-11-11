@@ -9,6 +9,7 @@
     "prettier": "prettier src --check",
     "format": "prettier src --write",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest",
     "fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
     "prepare": "husky install"
@@ -25,6 +26,9 @@
     "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.0",
+    "@types/jest": "^29.5.8",
     "@types/node": "^20.8.10",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
@@ -35,11 +39,13 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "jsdom": "^22.1.0",
     "husky": "^8.0.0",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "tailwindcss": "^3.3.5",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vitest": "^0.34.6"
   }
 }
