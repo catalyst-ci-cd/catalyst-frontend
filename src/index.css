@@ -4,6 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-6xl text-white font-bold;
+  }
+
+  h2 {
+    @apply text-4xl text-white font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl text-white;
+  }
+
+  p {
+    @apply text-ternary text-xl;
+  }
+}
+
 .primary-btn {
   @apply bg-white rounded-lg py-1 px-4 text-lg;
 }
