@@ -20,7 +20,7 @@ const TextField: FC<TextFieldProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   return type === "password" ? (
-    <div className="flex w-full bg-transparent my-5 border border-solid rounded-md text-white [&:focus-within]:border-accent">
+    <div className="flex w-full bg-transparent my-2 border border-solid rounded-md text-white [&:focus-within]:border-accent">
       <input
         type={showPassword ? "text" : "password"}
         name={name}
@@ -48,7 +48,7 @@ const TextField: FC<TextFieldProps> = ({
       type={type}
       name={name}
       placeholder={placeholder}
-      className="block w-full bg-transparent my-5 p-3 border border-solid border-white rounded-md text-white placeholder:text-[#ccc] outline-none focus:border-accent"
+      className="block w-full bg-transparent my-2 p-3 border border-solid border-white rounded-md text-white placeholder:text-[#ccc] outline-none focus:border-accent"
       value={value}
       onChange={(event) => {
         setValue(event.target.value);

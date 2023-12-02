@@ -5,7 +5,7 @@ interface CheckBoxFieldProps {
 }
 const CheckBoxField: FC<CheckBoxFieldProps> = ({ label }) => {
   return (
-    <div className="flex text-white items-center">
+    <div className="flex text-white items-center my-4">
       <input
         id="checkbox-input"
         type="checkbox"

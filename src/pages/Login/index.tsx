@@ -37,11 +37,13 @@ const Login = () => {
   return (
     <div className="grid place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
       <form
-        className="p-10 py-5 border border-solid border-white rounded-lg bg-[#ffffff18] shadow-2xl"
+        className="w-screen min-h-screen sm:w-auto sm:min-h-0 flex flex-col justify-center sm:px-10 p-5 border border-solid border-white rounded-lg bg-[#ffffff18] shadow-2xl"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-3xl font-semibold my-4">Welcome back!</h2>
-        <p className="text-[#aaa] my-4">
+        <h2 className="text-3xl text-center font-semibold my-4">
+          Welcome back!
+        </h2>
+        <p className="text-[#aaa] text-center my-4">
           Please fill in your Email and Password to Log in.
         </p>
         <TextField
