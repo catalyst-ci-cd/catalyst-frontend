@@ -1,17 +1,7 @@
-import { ISignUpFormInput } from "@/pages/Signup";
-import axiosInstance from "./axiosInstance";
 import { AxiosError } from "axios";
 import { ILoginFormInput } from "@/pages/Login";
-
-type Response<T> =
-  | {
-      status: "success";
-      data: T;
-    }
-  | {
-      status: "error";
-      error: unknown;
-    };
+import { ISignUpFormInput } from "@/pages/Signup";
+import axiosInstance, { Response } from "./axiosInstance";
 
 interface ISignUpRequestBody {
   name: string;
@@ -63,6 +53,7 @@ interface ILoginResponseBody {
     jwtToken: string;
   };
 }
+
 
 export const LoginHandler = async (
   data: ILoginFormInput

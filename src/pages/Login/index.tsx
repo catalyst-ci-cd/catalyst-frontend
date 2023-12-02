@@ -45,14 +45,16 @@ const Login = () => {
           Please fill in your Email and Password to Log in.
         </p>
         <TextField
-          type="text"
+          type="email"
           placeholder="Email"
+          required={true}
           value={formInput.email}
           setValue={(value: string) => handleChange(value, "email")}
         />
         <TextField
           type="password"
           placeholder="Password"
+          required={true}
           value={formInput.password}
           setValue={(value: string) => handleChange(value, "password")}
         />
@@ -66,7 +68,7 @@ const Login = () => {
           className="bg-accent w-full rounded-full p-3 my-3 font-medium text-white font-semibold transition-all duration-300 hover:shadow-lg"
           type="submit"
         >
-          Create Account
+          Log in
         </button>
         <Divider className="text-white before:border before:border-white after:border after:border-white">
           OR
