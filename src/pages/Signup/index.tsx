@@ -45,7 +45,7 @@ const Signup = () => {
   return (
     <div className="sm:grid sm:place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
       <form
-        className="container min-h-screen sm:min-h-0 py-5 flex flex-col justify-center border border-solid border-white rounded-lg bg-[#ffffff18] shadow-2xl"
+        className="container min-h-screen sm:min-h-0 sm:min-w-[540px] py-5 flex flex-col justify-center border border-solid border-white rounded-lg bg-[#ffffff18] shadow-2xl"
         onSubmit={handleSubmit}
       >
         <h2 className="text-3xl text-center font-semibold my-2">
