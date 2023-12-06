@@ -37,7 +37,7 @@ const Navbar = () => {
           </button>
         </div>
         {showMenu && (
-          <div className="absolute inset-0 bg-primary flex flex-col items-center justify-center md:hidden">
+          <div className="fixed inset-0 bg-primary flex flex-col items-center justify-center md:hidden">
             <button
               onClick={handleToggleMenu}
               className="text-white text-3xl absolute top-8 right-8"

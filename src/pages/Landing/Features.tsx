@@ -6,7 +6,7 @@ const Features = () => {
   return (
     <div>
       <div className="container flex gap-16 flex-col items-center justify-center py-8">
-        <h2>
+        <h2 className="text-center">
           Gain Valuable Insights into{" "}
           <span className="text-accent">Your Code</span>
         </h2>

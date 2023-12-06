@@ -9,7 +9,9 @@ const Footer = () => {
   return (
     <footer className="text-ternary py-8">
       <div className="container flex flex-col gap-8 justify-center items-center md:flex-row md:justify-between">
-        <div>All Rights Reserved &copy; Catalyst 2023</div>
+        <div className="text-center">
+          All Rights Reserved &copy; Catalyst 2023
+        </div>
         <div>
           <ul className="flex justify-between items-center gap-4 text-xl">
             <li>
