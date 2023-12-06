@@ -9,7 +9,10 @@ const Header = () => {
         backgroundSize: "auto, 45px",
       }}
     >
-      <div className="container flex flex-col justify-center items-center gap-8 min-h-screen max-w-5xl text-center">
+      <div
+        className="container flex flex-col justify-center items-center gap-8 min-h-screen max-w-5xl text-center"
+        id="header"
+      >
         <h1>
           Streamline Your Software Development with Our Cutting-Edge{" "}
           <span className="text-accent">CI/CD Tool</span>

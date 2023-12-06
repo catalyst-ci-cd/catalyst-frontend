@@ -5,7 +5,10 @@ import featureThree from "../../assets/3.png";
 const Features = () => {
   return (
     <div>
-      <div className="container flex gap-16 flex-col items-center justify-center py-8">
+      <div
+        className="container flex gap-16 flex-col items-center justify-center py-8"
+        id="features"
+      >
         <h2 className="text-center">
           Gain Valuable Insights into{" "}
           <span className="text-accent">Your Code</span>

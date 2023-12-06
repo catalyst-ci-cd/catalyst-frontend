@@ -8,24 +8,36 @@ const Navbar = () => {
     setShowMenu((showMenu) => !showMenu);
   };
 
+  const scrollToView = (id: string) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <nav className="py-8">
       <div className="container flex justify-between items-center">
         <div className="text-white uppercase text-2xl font-bold">Catalyst</div>
         <div className="hidden md:block">
           <ul className="flex items-center gap-4 text-ternary text-lg">
-            <li>
-              <a href="">Home</a>
+            <li
+              onClick={() => scrollToView("header")}
+              className="cursor-pointer"
+            >
+              Home
             </li>
-            <li>
-              <a href="">About</a>
+            <li
+              onClick={() => scrollToView("about")}
+              className="cursor-pointer"
+            >
+              About
             </li>
-            <li>
-              <a href="">Features</a>
+            <li
+              onClick={() => scrollToView("features")}
+              className="cursor-pointer"
+            >
+              Features
             </li>
-            <li>
-              <a href="">Contact</a>
-            </li>
+            <li>Contact</li>
           </ul>
         </div>
         <div className="hidden md:block">
@@ -45,18 +57,34 @@ const Navbar = () => {
               <AiOutlineClose />
             </button>
             <ul className="flex flex-col items-center gap-4 text-ternary text-lg">
-              <li>
-                <a href="">Home</a>
+              <li
+                onClick={() => {
+                  scrollToView("header");
+                  handleToggleMenu();
+                }}
+                className="cursor-pointer"
+              >
+                Home
               </li>
-              <li>
-                <a href="">About</a>
+              <li
+                onClick={() => {
+                  scrollToView("about");
+                  handleToggleMenu();
+                }}
+                className="cursor-pointer"
+              >
+                About
               </li>
-              <li>
-                <a href="">Features</a>
+              <li
+                onClick={() => {
+                  scrollToView("features");
+                  handleToggleMenu();
+                }}
+                className="cursor-pointer"
+              >
+                Features
               </li>
-              <li>
-                <a href="">Contact</a>
-              </li>
+              <li>Contact</li>
             </ul>
             <button className="primary-btn mt-4">Get Started</button>
           </div>
