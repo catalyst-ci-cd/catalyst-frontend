@@ -1,5 +1,5 @@
-import { default as ReactGoogleLogin } from "react-google-login";
-import { AiOutlineGoogle } from "react-icons/ai";
+import { default as ReactGoogleLogin } from 'react-google-login';
+import { AiOutlineGoogle } from 'react-icons/ai';
 
 const GoogleLogin = () => {
   return (

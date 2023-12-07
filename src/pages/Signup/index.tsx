@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Divider } from "@mui/material";
-import CheckBoxField from "@/components/forms/CheckBoxField";
-import TextField from "@/components/forms/TextField";
-import StyledGoogleLogin from "@/components/forms/GoogleLogin";
-import StyledGithubLogin from "@/components/forms/GithubLogin";
-import { useCallback, useState } from "react";
-import { SignUpHandler } from "@/services/AccountApi";
+import { Link, useNavigate } from 'react-router-dom';
+import { Divider } from '@mui/material';
+import CheckBoxField from '@/components/forms/CheckBoxField';
+import TextField from '@/components/forms/TextField';
+import StyledGoogleLogin from '@/components/forms/GoogleLogin';
+import StyledGithubLogin from '@/components/forms/GithubLogin';
+import { useCallback, useState } from 'react';
+import { SignUpHandler } from '@/services/AccountApi';
 
 export interface ISignUpFormInput {
   firstName: string;
@@ -18,28 +18,28 @@ export interface ISignUpFormInput {
 
 const Signup = () => {
   const [formInput, setFormInput] = useState<ISignUpFormInput>({
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
   const navigate = useNavigate();
   const handleChange = (value: string, name: keyof ISignUpFormInput) => {
-    setFormInput((prevData) => ({ ...prevData, [name]: value }));
+    setFormInput(prevData => ({ ...prevData, [name]: value }));
   };
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
-    async (event) => {
+    async event => {
       event.preventDefault();
       const response = await SignUpHandler(formInput);
-      if (response.status === "success") {
-        navigate("/login");
+      if (response.status === 'success') {
+        navigate('/login');
       } else {
         console.log(response.error);
       }
     },
-    [formInput]
+    [formInput, navigate],
   );
 
   return (
@@ -60,7 +60,7 @@ const Signup = () => {
             name="firstName"
             placeholder="First Name"
             value={formInput.firstName}
-            setValue={(value) => handleChange(value, "firstName")}
+            setValue={value => handleChange(value, 'firstName')}
             required={true}
           />
           <TextField
@@ -68,7 +68,7 @@ const Signup = () => {
             name="lastName"
             placeholder="Last Name"
             value={formInput.lastName}
-            setValue={(value) => handleChange(value, "lastName")}
+            setValue={value => handleChange(value, 'lastName')}
             required={true}
           />
         </div>
@@ -77,7 +77,7 @@ const Signup = () => {
           name="username"
           placeholder="Username"
           value={formInput.username}
-          setValue={(value) => handleChange(value, "username")}
+          setValue={value => handleChange(value, 'username')}
           required={true}
         />
         <TextField
@@ -85,7 +85,7 @@ const Signup = () => {
           name="email"
           placeholder="Email"
           value={formInput.email}
-          setValue={(value) => handleChange(value, "email")}
+          setValue={value => handleChange(value, 'email')}
           required={true}
         />
         <TextField
@@ -93,7 +93,7 @@ const Signup = () => {
           name="password"
           placeholder="Password"
           value={formInput.password}
-          setValue={(value) => handleChange(value, "password")}
+          setValue={value => handleChange(value, 'password')}
           required={true}
         />
         <TextField
@@ -101,13 +101,13 @@ const Signup = () => {
           name="confirmPassword"
           placeholder="Confirm Password"
           value={formInput.confirmPassword}
-          setValue={(value) => handleChange(value, "confirmPassword")}
+          setValue={value => handleChange(value, 'confirmPassword')}
           required={true}
         />
         <CheckBoxField
           label={
             <p className="text-sm sm:text-base">
-              I have read and accept the{" "}
+              I have read and accept the{' '}
               <Link to="#" className="underline underline-offset-2 text-accent">
                 Term & Conditions
               </Link>
@@ -127,7 +127,7 @@ const Signup = () => {
         <StyledGoogleLogin />
         <StyledGithubLogin />
         <p className="text-center my-6">
-          Already have an Account?{" "}
+          Already have an Account?{' '}
           <Link
             to="/login"
             className="underline underline-offset-2 text-accent"

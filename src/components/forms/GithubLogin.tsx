@@ -1,8 +1,8 @@
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillGithub } from 'react-icons/ai';
 
 const OAUTH_GITHUB_URL = `https://github.com/login/oauth/authorize?client_id=${
   import.meta.env.VITE_GITHUB_CLIENT_ID
-  }`;
+}`;
 
 const GithubLogin = () => {
   return (

@@ -1,42 +1,42 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import { vi } from "vitest";
-import Signup, { ISignUpFormInput } from ".";
+import { fireEvent, render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { vi } from 'vitest';
+import Signup, { ISignUpFormInput } from '.';
 
 // Mocks
 const mockSignUpHandler = vi.fn();
-vi.mock("@/services/AccountApi", async (importOriginal) => {
-  const mod = await importOriginal<typeof import("@/services/AccountApi")>();
+vi.mock('@/services/AccountApi', async importOriginal => {
+  const mod = await importOriginal<typeof import('@/services/AccountApi')>();
   return {
     ...mod,
     SignUpHandler: async (data: ISignUpFormInput) => {
       mockSignUpHandler(data);
       return {
-        status: "success",
-        data: "",
+        status: 'success',
+        data: '',
       };
     },
   };
 });
 
-describe("Signup", () => {
+describe('Signup', () => {
   beforeEach(() => {
     mockSignUpHandler.mockClear();
   });
-  it("Should render all input field and signup button", async () => {
+  it('Should render all input field and signup button', async () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
     expect(firstnameInput).toBeInTheDocument();
     expect(lastnameInput).toBeInTheDocument();
     expect(usernameInput).toBeInTheDocument();
@@ -45,27 +45,27 @@ describe("Signup", () => {
     expect(confirmPasswordInput).toBeInTheDocument();
     expect(signupButton).toBeInTheDocument();
   });
-  it("should sign up successfully when valid input is provided", async () => {
+  it('should sign up successfully when valid input is provided', async () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "khaledhegazy870@gmail.com";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = 'khaledhegazy870@gmail.com';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -90,24 +90,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "khaledhegazy870@gmail.com";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = '';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = 'khaledhegazy870@gmail.com';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -125,24 +125,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "khaledhegazy870@gmail.com";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = '';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = 'khaledhegazy870@gmail.com';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -160,24 +160,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "";
-    const emailValue = "khaledhegazy870@gmail.com";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = '';
+    const emailValue = 'khaledhegazy870@gmail.com';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -195,24 +195,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = '';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -230,24 +230,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "khaledhegazy870@gmail.com";
-    const passwordValue = "";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = 'khaledhegazy870@gmail.com';
+    const passwordValue = '';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -265,24 +265,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "khaledhegazy870@gmail.com";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = 'khaledhegazy870@gmail.com';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });
@@ -301,24 +301,24 @@ describe("Signup", () => {
     render(
       <BrowserRouter>
         <Signup />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    const firstnameInput = screen.getByPlaceholderText("First Name");
-    const lastnameInput = screen.getByPlaceholderText("Last Name");
-    const usernameInput = screen.getByPlaceholderText("Username");
-    const emailInput = screen.getByPlaceholderText("Email");
-    const passwordInput = screen.getByPlaceholderText("Password");
+    const firstnameInput = screen.getByPlaceholderText('First Name');
+    const lastnameInput = screen.getByPlaceholderText('Last Name');
+    const usernameInput = screen.getByPlaceholderText('Username');
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
     const confirmPasswordInput =
-      screen.getByPlaceholderText("Confirm Password");
-    const signupButton = screen.getByText("Create Account");
+      screen.getByPlaceholderText('Confirm Password');
+    const signupButton = screen.getByText('Create Account');
 
-    const firstnameValue = "Khaled";
-    const lastnameValue = "Hegazy";
-    const usernameValue = "khaledhegazy";
-    const emailValue = "khaledhegazy870gmail.com";
-    const passwordValue = "1234";
-    const confirmPasswordValue = "1234";
+    const firstnameValue = 'Khaled';
+    const lastnameValue = 'Hegazy';
+    const usernameValue = 'khaledhegazy';
+    const emailValue = 'khaledhegazy870gmail.com';
+    const passwordValue = '1234';
+    const confirmPasswordValue = '1234';
 
     fireEvent.change(firstnameInput, { target: { value: firstnameValue } });
     fireEvent.change(lastnameInput, { target: { value: lastnameValue } });

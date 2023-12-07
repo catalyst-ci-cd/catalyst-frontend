@@ -1,7 +1,7 @@
-import { AxiosError } from "axios";
-import { ILoginFormInput } from "@/pages/Login";
-import { ISignUpFormInput } from "@/pages/Signup";
-import axiosInstance, { Response } from "./axiosInstance";
+import { AxiosError } from 'axios';
+import { ILoginFormInput } from '@/pages/Login';
+import { ISignUpFormInput } from '@/pages/Signup';
+import axiosInstance, { Response } from './axiosInstance';
 
 interface ISignUpRequestBody {
   name: string;
@@ -20,7 +20,7 @@ interface ISignUpResponseBody {
 }
 
 export const SignUpHandler = async (
-  data: ISignUpFormInput
+  data: ISignUpFormInput,
 ): Promise<Response<ISignUpResponseBody>> => {
   try {
     const requestBody: ISignUpRequestBody = {
@@ -29,14 +29,14 @@ export const SignUpHandler = async (
       email: data.email,
       password: data.password,
     };
-    const response = await axiosInstance.post("/users/register", requestBody);
+    const response = await axiosInstance.post('/users/register', requestBody);
     return {
-      status: "success",
+      status: 'success',
       data: response.data,
     };
   } catch (errors) {
     return {
-      status: "error",
+      status: 'error',
       error: (errors as AxiosError).response?.data,
     };
   }
@@ -54,20 +54,19 @@ interface ILoginResponseBody {
   };
 }
 
-
 export const LoginHandler = async (
-  data: ILoginFormInput
+  data: ILoginFormInput,
 ): Promise<Response<ILoginResponseBody>> => {
   try {
     const requestBody: ILoginRequestBody = {
       email: data.email,
       password: data.password,
     };
-    const response = await axiosInstance.post("/users/login", requestBody);
-    return { status: "success", data: response.data };
+    const response = await axiosInstance.post('/users/login', requestBody);
+    return { status: 'success', data: response.data };
   } catch (errors) {
     return {
-      status: "error",
+      status: 'error',
       error: (errors as AxiosError).response?.data,
     };
   }

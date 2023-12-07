@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Divider } from "@mui/material";
-import CheckBoxField from "@/components/forms/CheckBoxField";
-import TextField from "@/components/forms/TextField";
-import GoogleLogin from "@/components/forms/GoogleLogin";
-import GithubLogin from "@/components/forms/GithubLogin";
-import React, { useCallback, useState } from "react";
-import { LoginHandler } from "@/services/AccountApi";
+import { Link, useNavigate } from 'react-router-dom';
+import { Divider } from '@mui/material';
+import CheckBoxField from '@/components/forms/CheckBoxField';
+import TextField from '@/components/forms/TextField';
+import GoogleLogin from '@/components/forms/GoogleLogin';
+import GithubLogin from '@/components/forms/GithubLogin';
+import React, { useCallback, useState } from 'react';
+import { LoginHandler } from '@/services/AccountApi';
 
 export interface ILoginFormInput {
   email: string;
@@ -13,26 +13,26 @@ export interface ILoginFormInput {
 }
 const Login = () => {
   const [formInput, setFormInput] = useState<ILoginFormInput>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const navigate = useNavigate();
   const handleChange = (value: string, name: keyof ILoginFormInput) => {
-    setFormInput((prevData) => ({ ...prevData, [name]: value }));
+    setFormInput(prevData => ({ ...prevData, [name]: value }));
   };
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
-    async (event) => {
+    async event => {
       event.preventDefault();
       const response = await LoginHandler(formInput);
 
-      if (response.status === "success") {
+      if (response.status === 'success') {
         console.log(response.data);
-        navigate("/");
+        navigate('/');
       } else {
         console.log(response.error);
       }
     },
-    [formInput]
+    [formInput, navigate],
   );
   return (
     <div className="sm:grid sm:place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
@@ -51,14 +51,14 @@ const Login = () => {
           placeholder="Email"
           required={true}
           value={formInput.email}
-          setValue={(value: string) => handleChange(value, "email")}
+          setValue={(value: string) => handleChange(value, 'email')}
         />
         <TextField
           type="password"
           placeholder="Password"
           required={true}
           value={formInput.password}
-          setValue={(value: string) => handleChange(value, "password")}
+          setValue={(value: string) => handleChange(value, 'password')}
         />
         <div className="flex justify-between items-center">
           <CheckBoxField label={<p>Remember Me</p>} />
@@ -78,7 +78,7 @@ const Login = () => {
         <GoogleLogin />
         <GithubLogin />
         <p className="text-center my-6">
-          Don't have an Account yet?{" "}
+          Don't have an Account yet?{' '}
           <Link
             to="/signup"
             className="underline underline-offset-2 text-accent"
