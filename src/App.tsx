@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NotFound from './pages/NotFound';
-import Landing from "./pages/Landing";
+import Landing from './pages/Landing';
 
 const App = () => {
   return (
@@ -15,5 +15,5 @@ const App = () => {
       </Routes>
     </div>
   );
-}
+};
 export default App;

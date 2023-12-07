@@ -1,6 +1,6 @@
-import featureOne from "../../assets/1.png";
-import featureTwo from "../../assets/2.png";
-import featureThree from "../../assets/3.png";
+import featureOne from '../../assets/1.png';
+import featureTwo from '../../assets/2.png';
+import featureThree from '../../assets/3.png';
 
 const Features = () => {
   return (
@@ -10,7 +10,7 @@ const Features = () => {
         id="features"
       >
         <h2 className="text-center">
-          Gain Valuable Insights into{" "}
+          Gain Valuable Insights into{' '}
           <span className="text-accent">Your Code</span>
         </h2>
         <div className="grid gap-8 grid-cols-1 md:grid-cols-3">
