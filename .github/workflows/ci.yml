@@ -1,4 +1,4 @@
-name: build
+name: CI
 
 on: [push]
 
@@ -19,4 +19,6 @@ jobs:
         run: npm run prettier
       - name: Linter Check
         run: npm run lint
+      - name: Test Check
+        run: npm test
       
