@@ -1,3 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl text-white font-bold md:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl text-white font-semibold md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl text-white md:text-3xl;
+  }
+
+  p {
+    @apply text-ternary text-lg md:text-xl;
+  }
+}
+
+.primary-btn {
+  @apply bg-white rounded-lg py-1 px-4 text-lg;
+}
+
+.secondary-btn {
+  @apply rounded-lg py-1 px-4 border border-white text-white text-lg;
+}
