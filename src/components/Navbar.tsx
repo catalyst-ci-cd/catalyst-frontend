@@ -1,16 +1,17 @@
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const handleToggleMenu = () => {
-    setShowMenu((showMenu) => !showMenu);
+    setShowMenu(showMenu => !showMenu);
   };
 
   const scrollToView = (id: string) => {
     const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+    element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -18,21 +19,21 @@ const Navbar = () => {
       <div className="container flex justify-between items-center">
         <div className="text-white uppercase text-2xl font-bold">Catalyst</div>
         <div className="hidden md:block">
-          <ul className="flex items-center gap-4 text-ternary text-lg">
+          <ul className="flex items-center gap-4 text-tertiary text-lg">
             <li
-              onClick={() => scrollToView("header")}
+              onClick={() => scrollToView('header')}
               className="cursor-pointer"
             >
               Home
             </li>
             <li
-              onClick={() => scrollToView("about")}
+              onClick={() => scrollToView('about')}
               className="cursor-pointer"
             >
               About
             </li>
             <li
-              onClick={() => scrollToView("features")}
+              onClick={() => scrollToView('features')}
               className="cursor-pointer"
             >
               Features
@@ -41,7 +42,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="hidden md:block">
-          <button className="primary-btn">Get Started</button>
+          <button className="primary-btn">
+            <Link to="/login">Get Started</Link>
+          </button>
         </div>
         <div className="md:hidden">
           <button onClick={handleToggleMenu} className="text-white text-3xl ">
@@ -56,10 +59,10 @@ const Navbar = () => {
             >
               <AiOutlineClose />
             </button>
-            <ul className="flex flex-col items-center gap-4 text-ternary text-lg">
+            <ul className="flex flex-col items-center gap-4 text-tertiary text-lg">
               <li
                 onClick={() => {
-                  scrollToView("header");
+                  scrollToView('header');
                   handleToggleMenu();
                 }}
                 className="cursor-pointer"
@@ -68,7 +71,7 @@ const Navbar = () => {
               </li>
               <li
                 onClick={() => {
-                  scrollToView("about");
+                  scrollToView('about');
                   handleToggleMenu();
                 }}
                 className="cursor-pointer"
@@ -77,7 +80,7 @@ const Navbar = () => {
               </li>
               <li
                 onClick={() => {
-                  scrollToView("features");
+                  scrollToView('features');
                   handleToggleMenu();
                 }}
                 className="cursor-pointer"
@@ -86,7 +89,9 @@ const Navbar = () => {
               </li>
               <li>Contact</li>
             </ul>
-            <button className="primary-btn mt-4">Get Started</button>
+            <button className="primary-btn mt-4">
+              <Link to="/login">Get Started</Link>
+            </button>
           </div>
         )}
       </div>

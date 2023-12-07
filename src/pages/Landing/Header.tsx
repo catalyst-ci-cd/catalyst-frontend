@@ -1,20 +1,14 @@
-import cellBg from "../../assets/cell.png";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header
-      style={{
-        backgroundImage: `linear-gradient(to bottom, #2C3333 7%, rgba(0, 0, 0, 0) 46%, rgba(0, 0, 0, 0) 96%, #2C3333), url(${cellBg})`,
-        backgroundPosition: "center",
-        backgroundSize: "auto, 45px",
-      }}
-    >
+    <header>
       <div
         className="container flex flex-col justify-center items-center gap-8 min-h-screen max-w-5xl text-center"
         id="header"
       >
         <h1>
-          Streamline Your Software Development with Our Cutting-Edge{" "}
+          Streamline Your Software Development with Our Cutting-Edge{' '}
           <span className="text-accent">CI/CD Tool</span>
         </h1>
         <p>
@@ -22,7 +16,9 @@ const Header = () => {
           Automate, test, and deploy seamlessly for quicker, quality releases.
         </p>
         <div className="flex gap-4 items-center justify-between">
-          <button className="primary-btn">Get Started</button>
+          <button className="primary-btn">
+            <Link to="/login">Get Started</Link>
+          </button>
           <button className="secondary-btn">Learn More</button>
         </div>
       </div>

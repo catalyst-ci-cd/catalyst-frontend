@@ -1,23 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        primary: "#222626",
-        secondary: "#363D3D",
-        tertiary: "#324E55",
-        accent: "#D5B24B",
+        primary: '#24292e',
+        secondary: '#2b3137',
+        tertiary: '#8590a0',
+        accent: '#E48F45',
       },
       fontFamily: {
-        roboto: ["Roboto", "sans-serif"],
+        roboto: ['Roboto', 'sans-serif'],
       },
       container: {
         center: true,
-        padding: "2rem",
+        padding: '2rem',
       },
       fontFamily: {
-        roboto: ["roboto", "sans-serif"],
+        roboto: ['roboto', 'sans-serif'],
       },
     },
   },
