@@ -1,15 +1,9 @@
 import Editor from '@monaco-editor/react';
-import { useRef } from 'react';
 import Spinner from '@/components/Spinner';
 
 const AddWorkFlow = () => {
-  const editorRef = useRef<any>();
-  function handleEditorDidMount(editor: { focus: () => void }) {
-    editorRef.current = editor;
-    editor.focus();
-  }
-  function handleShowValue() {
-    alert(editorRef.current.getValue());
+  function handleEditorChange(value: string) {
+    console.log('here is the current model value:', value);
   }
   return (
     <div className=" bg-primary">
@@ -21,7 +15,7 @@ const AddWorkFlow = () => {
             theme="vs-dark"
             height="100vh"
             width="100%"
-            onMount={handleEditorDidMount}
+            onChange={handleEditorChange}
             loading={<Spinner />}
           />
         </div>
@@ -33,10 +27,7 @@ const AddWorkFlow = () => {
             placeholder="Workflow name..."
             className=" bg-transparent  text-white p-2 border-b-2 border-accent outline-none focus:border-primary transition-all duration-300 ease-in-out w-full "
           />
-          <button
-            className="bg-white text-primary p-2 rounded-md hover:bg-primary hover:text-white  transition-all duration-300 ease-in-out hover:border-accent border-2 border-primary w-full whitespace-nowrap "
-            onClick={handleShowValue}
-          >
+          <button className="bg-white text-primary p-2 rounded-md hover:bg-primary hover:text-white  transition-all duration-300 ease-in-out hover:border-accent border-2 border-primary w-full whitespace-nowrap ">
             Save Workflow
           </button>
         </div>
