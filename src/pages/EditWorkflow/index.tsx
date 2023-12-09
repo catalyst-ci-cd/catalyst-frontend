@@ -1,7 +1,7 @@
 import Editor from '@monaco-editor/react';
 import Spinner from '@/components/Spinner';
 
-const AddWorkFlow = () => {
+const EditWorkFlow = () => {
   function handleEditorChange(value: string) {
     console.log('here is the current model value:', value);
   }
@@ -28,11 +28,11 @@ const AddWorkFlow = () => {
             className=" bg-transparent  text-white p-2 border-b-2 border-accent outline-none focus:border-primary transition-all duration-300 ease-in-out w-full "
           />
           <button className="bg-white text-primary p-2 rounded-md hover:bg-primary hover:text-white  transition-all duration-300 ease-in-out hover:border-accent border-2 border-primary w-full whitespace-nowrap ">
-            Create Workflow
+            Save Workflow
           </button>
         </div>
       </div>
     </div>
   );
 };
-export default AddWorkFlow;
+export default EditWorkFlow;
