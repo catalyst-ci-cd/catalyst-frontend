@@ -9,10 +9,10 @@ const App = () => {
   return (
     <div className="font-roboto">
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/" element={<Landing />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="dashboard/*" element={<Dashboard />} />
+        <Route index element={<Landing />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
