@@ -1,10 +1,10 @@
-// import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 import Runs from './Runs';
 
 const Dashboard = () => {
   return (
-    <div>
-      {/* <Navbar /> */}
+    <div className="flex min-h-screen">
+      <Sidebar />
       <Runs />
     </div>
   );
