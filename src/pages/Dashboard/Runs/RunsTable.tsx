@@ -1,7 +1,6 @@
 import { RiLoopLeftFill } from 'react-icons/ri';
 import {
   IconButton,
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -67,12 +66,14 @@ const rows: IRowData[] = [
 
 const RunsTable = () => {
   return (
-    <div className="border border-solid border-white rounded-md my-2">
+    <div className="rounded-md my-2 bg-secondary p-3 border border-solid border-tertiary shadow-xl shadow-secondary">
       <TableContainer
-        component={Paper}
         sx={{
-          bgcolor: 'transparent',
-          '& .MuiTableCell-root': { color: 'white', textAlign: 'center' },
+          '& .MuiTableCell-root': {
+            color: 'white',
+            textAlign: 'center',
+            border: 0,
+          },
         }}
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -83,7 +84,7 @@ const RunsTable = () => {
               },
             }}
           >
-            <TableRow>
+            <TableRow className="border-b border-solid border-tertiary">
               <TableCell width={30}>Status</TableCell>
               <TableCell>Run</TableCell>
               <TableCell>Workflow</TableCell>
@@ -91,7 +92,7 @@ const RunsTable = () => {
               <TableCell width={30}>Actions</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className="[&>.MuiTableRow-root:last-child]:border-0 [&>.MuiTableRow-root]:border-b [&>.MuiTableRow-root]:border-solid [&>.MuiTableRow-root]:border-primary">
             {rows.map(row => (
               <TableRow key={row.id}>
                 <TableCell>
