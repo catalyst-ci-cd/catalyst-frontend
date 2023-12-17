@@ -1,9 +1,9 @@
 import { useParams } from 'react-router';
 import StatusLabel, { statusType } from '../StatusLabel';
 import { IoTimeSharp } from 'react-icons/io5';
-import { RiLoopLeftFill } from 'react-icons/ri';
+// import { RiLoopLeftFill } from 'react-icons/ri';
 
-import { IconButton, Tooltip } from '@mui/material';
+// import { IconButton, Tooltip } from '@mui/material';
 import JobsTable from './JobsTable';
 import { Link } from 'react-router-dom';
 
@@ -40,11 +40,11 @@ const RunDetails = () => {
             {workflowRunDetails.filename}
           </Link>
         </div>
-        <Tooltip title="Rerun Workflow">
+        {/* <Tooltip title="Rerun Workflow">
           <IconButton>
             <RiLoopLeftFill className="text-white text-3xl" />
           </IconButton>
-        </Tooltip>
+        </Tooltip> */}
       </div>
 
       <div className="w-min my-3 flex gap-4">

@@ -1,4 +1,4 @@
-import { Box, Drawer } from '@mui/material';
+import { Drawer } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMenu } from 'react-icons/io5';
@@ -36,7 +36,7 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
-      <div className="lg:hidden bg-primary">
+      <div className="lg:hidden fixed right-4 top-4">
         <button
           onClick={() => setOpenSidebarDrawer(true)}
           className="text-white text-3xl p-2 m-3 border border-solid border-tertiary bg-secondary rounded-lg"
@@ -47,7 +47,6 @@ const Sidebar = () => {
       <Drawer
         className="[&>.MuiDrawer-paper]:p-5 [&>.MuiDrawer-paper]:bg-secondary [&>.MuiDrawer-paper]:w-[300px] text-white"
         open={openSidebarDrawer}
-        component={Box}
         onClose={() => setOpenSidebarDrawer(false)}
       >
         <h3>Catalyst</h3>
