@@ -29,9 +29,12 @@ interface GenericTableProps<T> {
 
 function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
   return (
-    <div className="rounded-md my-2 bg-secondary p-3 border border-solid border-tertiary shadow-xl shadow-secondary">
+    <div className="rounded-md my-2 bg-secondary p-3 border border-solid border-tertiary shadow-xl shadow-secondary  overflow-auto">
       <TableContainer
         sx={{
+          width: '100%',
+          display: 'table',
+          tableLayout: 'fixed',
           '& .MuiTableCell-root': {
             color: 'white',
             textAlign: 'center',
@@ -39,7 +42,7 @@ function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
           },
         }}
       >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead
             sx={{
               '& .MuiTableCell-head': {

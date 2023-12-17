@@ -31,11 +31,11 @@ const RunDetails = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-5">
+        <div>
           <h2>{workflowRunDetails.name}</h2>
           <Link
             to="#"
-            className="bg-gray-700 text-gray-300 text-base px-3 py-1 my-1 inline-block rounded-lg hover:underline"
+            className="bg-gray-700 text-gray-300 my-3 text-base px-3 py-1 my-1 inline-block rounded-lg hover:underline"
           >
             {workflowRunDetails.filename}
           </Link>
@@ -53,7 +53,7 @@ const RunDetails = () => {
           <IoTimeSharp /> {workflowRunDetails.duration}
         </p>
       </div>
-      <div className="p-10">
+      <div className="py-10">
         <JobsTable />
       </div>
     </div>
