@@ -1,5 +1,5 @@
 import { useParams } from 'react-router';
-import StatusLabel, { statusType } from '../StatusLabel';
+import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { IoTimeSharp } from 'react-icons/io5';
 // import { RiLoopLeftFill } from 'react-icons/ri';
 

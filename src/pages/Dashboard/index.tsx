@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar';
+import Sidebar from '../../components/Sidebar';
 import Runs from './Runs';
 import { Route, Routes } from 'react-router';
 import RunDetails from './RunDetails';

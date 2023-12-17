@@ -1,4 +1,4 @@
-import StatusLabel, { statusType } from '../StatusLabel';
+import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { Link } from 'react-router-dom';
 import GenericTable, { columnType } from '@/components/GenericTable';
 

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import StatusLabel, { statusType } from '../StatusLabel';
+import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { IoTimeSharp } from 'react-icons/io5';
 import { Drawer } from '@mui/material';
 import { MdOutlineContentPasteSearch } from 'react-icons/md';
