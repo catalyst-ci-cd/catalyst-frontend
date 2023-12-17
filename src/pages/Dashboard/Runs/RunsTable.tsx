@@ -1,16 +1,8 @@
 import { RiLoopLeftFill } from 'react-icons/ri';
-import {
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Tooltip,
-} from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import StatusLabel, { statusType } from '../StatusLabel';
 import { Link } from 'react-router-dom';
+import GenericTable, { columnType } from '@/components/GenericTable';
 
 interface IRowData {
   id: number;
@@ -20,6 +12,59 @@ interface IRowData {
   duration: string;
   finished_at: string;
 }
+
+const ColumnDefinition: columnType<IRowData>[] = [
+  {
+    name: 'status',
+    displayName: 'Status',
+    width: 30,
+    type: 'custom',
+    content: row => <StatusLabel type={row.status} />,
+  },
+  {
+    name: 'name',
+    displayName: 'Name',
+    type: 'custom',
+
+    content: row => (
+      <Link to={`runs/${row.id}`} className="hover:underline text-blue-200">
+        {row.name}
+      </Link>
+    ),
+  },
+  {
+    name: 'workflow',
+    displayName: 'Workflow',
+    type: 'custom',
+
+    content: row => (
+      <Link
+        to={`workflows/${row.workflow}`}
+        className="hover:underline text-blue-200"
+      >
+        {row.workflow}
+      </Link>
+    ),
+  },
+  {
+    name: 'duration',
+    displayName: 'Duration',
+    type: 'text',
+  },
+  {
+    name: 'actions',
+    displayName: 'Actions',
+    width: 30,
+    type: 'custom',
+    content: () => (
+      <Tooltip title={'Rerun Job'} arrow>
+        <IconButton>
+          <RiLoopLeftFill className="text-white" />
+        </IconButton>
+      </Tooltip>
+    ),
+  },
+];
 
 const rows: IRowData[] = [
   {
@@ -65,70 +110,7 @@ const rows: IRowData[] = [
 ];
 
 const RunsTable = () => {
-  return (
-    <div className="rounded-md my-2 bg-secondary p-3 border border-solid border-tertiary shadow-xl shadow-secondary">
-      <TableContainer
-        sx={{
-          '& .MuiTableCell-root': {
-            color: 'white',
-            textAlign: 'center',
-            border: 0,
-          },
-        }}
-      >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead
-            sx={{
-              '& .MuiTableCell-head': {
-                fontSize: '1.3rem',
-              },
-            }}
-          >
-            <TableRow className="border-b border-solid border-tertiary">
-              <TableCell width={30}>Status</TableCell>
-              <TableCell>Run</TableCell>
-              <TableCell>Workflow</TableCell>
-              <TableCell>Duration</TableCell>
-              <TableCell width={30}>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody className="[&>.MuiTableRow-root:last-child]:border-0 [&>.MuiTableRow-root]:border-b [&>.MuiTableRow-root]:border-solid [&>.MuiTableRow-root]:border-primary">
-            {rows.map(row => (
-              <TableRow key={row.id}>
-                <TableCell>
-                  <StatusLabel type={row.status} />
-                </TableCell>
-                <TableCell>
-                  <Link
-                    to={`runs/${row.id}`}
-                    className="hover:underline text-blue-200"
-                  >
-                    {row.name}
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <Link
-                    to={`workflows/${row.workflow}`}
-                    className="hover:underline text-blue-200"
-                  >
-                    {row.workflow}
-                  </Link>
-                </TableCell>
-                <TableCell>{row.duration}</TableCell>
-                <TableCell>
-                  <Tooltip title={'Rerun Job'} arrow>
-                    <IconButton>
-                      <RiLoopLeftFill className="text-white" />
-                    </IconButton>
-                  </Tooltip>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
-  );
+  return <GenericTable columns={ColumnDefinition} data={rows} />;
 };
 
 export default RunsTable;
