@@ -55,7 +55,6 @@ const JobResult = () => {
         className="[&>.MuiDrawer-paper]:p-5 [&>.MuiDrawer-paper]:bg-secondary [&>.MuiDrawer-paper]:w-[300px] text-white"
         open={openSidebarDrawer}
         onClose={() => setOpenSidebarDrawer(false)}
-        anchor="right"
       >
         <div className="w-[300px] bg-secondary -mr-5 -mt-5 px-3 py-8">
           <h3>{JobResultDetails.name}</h3>
