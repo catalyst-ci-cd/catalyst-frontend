@@ -43,7 +43,7 @@ const JobResult = () => {
           <span className="font-bold">Job ID:</span> #{job_id}
         </p>
       </div>
-      <div className="fixed right-4 bottom-4">
+      <div className="lg:hidden fixed right-4 bottom-4">
         <button
           className="text-white text-3xl p-2 m-3 border border-solid border-tertiary bg-secondary rounded-lg"
           onClick={() => setOpenSidebarDrawer(true)}
