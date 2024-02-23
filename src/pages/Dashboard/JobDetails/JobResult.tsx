@@ -1,40 +1,35 @@
-import { useParams } from 'react-router-dom';
 import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { IoTimeSharp } from 'react-icons/io5';
 import { Drawer } from '@mui/material';
 import { MdOutlineContentPasteSearch } from 'react-icons/md';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
-type JobDetailsParamsType = {
-  run_id: string;
-  job_id: string;
-};
-
-interface IJobResult {
+export interface JobResultProps {
   name: string;
   status: statusType;
   duration: string;
+  run_id: string;
+  job_id: string;
 }
 
-const JobResultDetails: IJobResult = {
-  name: 'Job #1',
-  status: 'running',
-  duration: '00:01:07',
-};
-
-const JobResult = () => {
-  const { run_id, job_id } = useParams<JobDetailsParamsType>();
+const JobResult: FC<JobResultProps> = ({
+  name,
+  status,
+  duration,
+  run_id,
+  job_id,
+}) => {
   const [openSidebarDrawer, setOpenSidebarDrawer] = useState(false);
   return (
     <>
       <div className="hidden lg:block w-[300px] bg-secondary -mr-5 -mt-5 px-3 py-8">
-        <h3>{JobResultDetails.name}</h3>
+        <h3>{name}</h3>
         <div className="w-fit my-4">
-          <StatusLabel type={JobResultDetails.status} />
+          <StatusLabel type={status} />
         </div>
         <p className="flex items-center gap-2 text-white text-xl">
           <IoTimeSharp />
-          {JobResultDetails.duration}
+          {duration}
         </p>
         <p className="text-white my-3 text-lg">
           <span className="font-bold">Run ID:</span> #{run_id}
@@ -57,13 +52,13 @@ const JobResult = () => {
         onClose={() => setOpenSidebarDrawer(false)}
       >
         <div className="w-[300px] bg-secondary -mr-5 -mt-5 px-3 py-8">
-          <h3>{JobResultDetails.name}</h3>
+          <h3>{name}</h3>
           <div className="w-fit my-4">
-            <StatusLabel type={JobResultDetails.status} />
+            <StatusLabel type={status} />
           </div>
           <p className="flex items-center gap-2 text-white text-xl">
             <IoTimeSharp />
-            {JobResultDetails.duration}
+            {duration}
           </p>
           <p className="text-white my-3 text-lg">
             <span className="font-bold">Run ID:</span> #{run_id}

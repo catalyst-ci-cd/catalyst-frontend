@@ -3,8 +3,9 @@ import { IconButton, Tooltip } from '@mui/material';
 import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { Link } from 'react-router-dom';
 import GenericTable, { columnType } from '@/components/GenericTable';
+import { FC } from 'react';
 
-interface IRowData {
+export interface IRowData {
   id: number;
   status: statusType;
   name: string;
@@ -66,51 +67,12 @@ const ColumnDefinition: columnType<IRowData>[] = [
   },
 ];
 
-const rows: IRowData[] = [
-  {
-    id: 1,
-    status: 'running',
-    name: 'Run #1',
-    workflow: 'Workflow #1',
-    duration: '00:01:07',
-    finished_at: '3 weeks ago',
-  },
-  {
-    id: 2,
-    status: 'passed',
-    name: 'Run #2',
-    workflow: 'Workflow #2',
-    duration: '00:01:07',
-    finished_at: '3 weeks ago',
-  },
-  {
-    id: 3,
-    status: 'failed',
-    name: 'Run #3',
-    workflow: 'Workflow #1',
-    duration: '00:01:07',
-    finished_at: '3 weeks ago',
-  },
-  {
-    id: 3,
-    status: 'canceled',
-    name: 'Run #4',
-    workflow: 'Workflow #1',
-    duration: '00:01:07',
-    finished_at: '3 weeks ago',
-  },
-  {
-    id: 4,
-    status: 'passed',
-    name: 'Run #5',
-    workflow: 'Workflow #2',
-    duration: '00:01:07',
-    finished_at: '3 weeks ago',
-  },
-];
+interface RunsTableProps {
+  data: IRowData[];
+}
 
-const RunsTable = () => {
-  return <GenericTable columns={ColumnDefinition} data={rows} />;
+const RunsTable: FC<RunsTableProps> = ({ data }) => {
+  return <GenericTable columns={ColumnDefinition} data={data} />;
 };
 
 export default RunsTable;

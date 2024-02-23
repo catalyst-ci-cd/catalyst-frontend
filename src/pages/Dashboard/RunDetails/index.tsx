@@ -4,8 +4,10 @@ import { IoTimeSharp } from 'react-icons/io5';
 // import { RiLoopLeftFill } from 'react-icons/ri';
 
 // import { IconButton, Tooltip } from '@mui/material';
-import JobsTable from './JobsTable';
+import JobsTable, { IRowData } from './JobsTable';
 import { Link } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { getWorkflowResults } from '@/services/WorkflowApi';
 
 type RunDetailsParamsType = {
   run_id: string;
@@ -25,8 +27,28 @@ const workflowRunDetails: IWorkflowRunDetails = {
 };
 
 const RunDetails = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { run_id } = useParams<RunDetailsParamsType>();
+  const [rows, setRows] = useState<IRowData[]>([]);
+  const loadWorkflowResults = useCallback(async () => {
+    if (run_id) {
+      const result = await getWorkflowResults('1', run_id);
+      if (result.status === 'success') {
+        const rowsData: IRowData[] = result.data.workflow_result.jobResults.map(
+          jobRun => ({
+            id: jobRun.id,
+            name: jobRun.name,
+            duration: '00:01:07',
+            status: jobRun.state,
+          }),
+        );
+        setRows(rowsData);
+      }
+    }
+  }, [run_id]);
+
+  useEffect(() => {
+    loadWorkflowResults();
+  }, [loadWorkflowResults]);
 
   return (
     <div>
@@ -54,7 +76,7 @@ const RunDetails = () => {
         </p>
       </div>
       <div className="py-10">
-        <JobsTable />
+        <JobsTable rows={rows} />
       </div>
     </div>
   );

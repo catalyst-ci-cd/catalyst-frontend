@@ -1,8 +1,9 @@
 import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { Link } from 'react-router-dom';
 import GenericTable, { columnType } from '@/components/GenericTable';
+import { FC } from 'react';
 
-interface IRowData {
+export interface IRowData {
   id: number;
   status: statusType;
   name: string;
@@ -34,40 +35,11 @@ const ColumnDefinition: columnType<IRowData>[] = [
   },
 ];
 
-const rows: IRowData[] = [
-  {
-    id: 1,
-    status: 'running',
-    name: 'Job #1',
-    duration: '00:01:07',
-  },
-  {
-    id: 2,
-    status: 'passed',
-    name: 'Job #2',
-    duration: '00:01:07',
-  },
-  {
-    id: 3,
-    status: 'failed',
-    name: 'Job #3',
-    duration: '00:01:07',
-  },
-  {
-    id: 4,
-    status: 'canceled',
-    name: 'Job #4',
-    duration: '00:01:07',
-  },
-  {
-    id: 5,
-    status: 'passed',
-    name: 'Job #5',
-    duration: '00:01:07',
-  },
-];
+interface JobsTableProps {
+  rows: IRowData[];
+}
 
-const JobsTable = () => {
+const JobsTable: FC<JobsTableProps> = ({ rows }) => {
   return <GenericTable columns={ColumnDefinition} data={rows} />;
 };
 
