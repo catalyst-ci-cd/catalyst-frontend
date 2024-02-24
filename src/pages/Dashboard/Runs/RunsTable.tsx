@@ -28,7 +28,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
     type: 'custom',
 
     content: row => (
-      <Link to={`runs/${row.id}`} className="hover:underline text-blue-200">
+      <Link to={`${row.id}`} className="hover:underline text-blue-200">
         {row.name}
       </Link>
     ),
@@ -39,10 +39,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
     type: 'custom',
 
     content: row => (
-      <Link
-        to={`workflows/${row.workflow}`}
-        className="hover:underline text-blue-200"
-      >
+      <Link to={`${row.id}`} className="hover:underline text-blue-200">
         {row.workflow}
       </Link>
     ),

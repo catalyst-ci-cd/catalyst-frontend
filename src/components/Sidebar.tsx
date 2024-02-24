@@ -1,18 +1,27 @@
 import { Drawer } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMenu } from 'react-icons/io5';
 
 const pages = [
   { name: 'Editor', path: '/dashboard/editor' },
   { name: 'Workflows', path: '/dashboard/workflows' },
-  { name: 'Workflows Runs', path: '/dashboard/' },
+  { name: 'Workflows Runs', path: '/dashboard/runs' },
   { name: 'Jobs', path: '/dashboard/jobs/' },
 ];
 
 const Sidebar = () => {
-  const [selectedPage, setSelectedPage] = useState<string>('Workflows');
+  const [selectedPage, setSelectedPage] = useState<string>();
   const [openSidebarDrawer, setOpenSidebarDrawer] = useState(false);
+  useEffect(() => {
+    const page = pages.find(page =>
+      window.location.pathname.includes(page.path),
+    );
+    if (page) {
+      setSelectedPage(page.name);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.location.pathname]);
   return (
     <>
       <div className="hidden lg:block p-5 w-[300px] bg-secondary text-white">

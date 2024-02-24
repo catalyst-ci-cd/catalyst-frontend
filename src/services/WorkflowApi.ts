@@ -11,33 +11,6 @@ interface IListWorkflowsResultsResponseBody {
     workflow_name: string;
   }[];
 }
-interface IGetWorkflowResultsResponseBody {
-  message: string;
-  workflow_result: {
-    id: number;
-    workflowID: number;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: {
-      time: string;
-      valid: boolean;
-    };
-    jobResults: {
-      id: number;
-      workflowResultID: number;
-      name: string;
-      state: statusType;
-      topologicalOrder: number;
-      stepResults: {
-        id: number;
-        jobResultID: number;
-        topologicalOrder: number;
-        isSucceeded: boolean;
-        logs: string;
-      }[];
-    }[];
-  };
-}
 export const listWorkflowsResults = async (
   userId: string,
 ): Promise<Response<IListWorkflowsResultsResponseBody>> => {
@@ -88,6 +61,33 @@ export const listWorkflowsResults = async (
   }
 };
 
+interface IGetWorkflowResultsResponseBody {
+  message: string;
+  workflow_result: {
+    id: number;
+    workflowID: number;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: {
+      time: string;
+      valid: boolean;
+    };
+    jobResults: {
+      id: number;
+      workflowResultID: number;
+      name: string;
+      state: statusType;
+      topologicalOrder: number;
+      stepResults: {
+        id: number;
+        jobResultID: number;
+        topologicalOrder: number;
+        isSucceeded: boolean;
+        logs: string;
+      }[];
+    }[];
+  };
+}
 export const getWorkflowResults = async (
   userId: string,
   workflowId: string,
@@ -214,6 +214,68 @@ molestiae quas vel sint commodi repudiandae`,
   };
   try {
     const url = `/workflow-results/${workflowId}/?userId=${userId}`;
+    const response = await axiosInstance.get(url);
+    return {
+      status: 'success',
+      data: response.data,
+    };
+  } catch (errors) {
+    return {
+      status: 'error',
+      error: (errors as AxiosError).response?.data,
+    };
+  }
+};
+
+interface IListWorkflowsResponseBody {
+  message: string;
+  workflows: {
+    id: number;
+    user_id: number;
+    name: string;
+    created_at: string;
+    deleted_at: string;
+    content: string;
+  }[];
+}
+
+export const listWorkflows = async (
+  userId: string,
+): Promise<Response<IListWorkflowsResponseBody>> => {
+  return {
+    status: 'success',
+    data: {
+      message: 'Done',
+      workflows: [
+        {
+          id: 1,
+          content: 'Test',
+          name: 'test.yml',
+          user_id: 1,
+          created_at: '01/01/2002',
+          deleted_at: '01/01/2002',
+        },
+        {
+          id: 2,
+          content: 'Test',
+          name: 'build.yml',
+          user_id: 1,
+          created_at: '01/01/2002',
+          deleted_at: '01/01/2002',
+        },
+        {
+          id: 3,
+          content: 'Test',
+          name: 'deploy.yml',
+          user_id: 1,
+          created_at: '01/01/2002',
+          deleted_at: '01/01/2002',
+        },
+      ],
+    },
+  };
+  try {
+    const url = `/workflows/?userId=${userId}`;
     const response = await axiosInstance.get(url);
     return {
       status: 'success',
