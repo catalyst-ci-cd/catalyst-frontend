@@ -3,6 +3,7 @@ import Spinner from '@/components/Spinner';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EditWorkflowHandler } from '@/services/WorkflowApi';
+import { toast } from 'react-toastify';
 
 export interface IWorflowUpdateFormInput {
   content: string;
@@ -19,6 +20,12 @@ const EditWorkFlow = () => {
     HTMLFormElement
   > = async event => {
     event.preventDefault();
+
+    if (workflowContent === '') {
+      toast.error('Workflow content cannot be empty');
+      return;
+    }
+
     const response = await EditWorkflowHandler(
       {
         content: workflowContent,
@@ -27,9 +34,10 @@ const EditWorkFlow = () => {
     );
 
     if (response.status === 'success') {
+      toast.success(response.data.message);
       navigate('/dashboard/workflows');
     } else {
-      console.log(response.error);
+      toast.error(response.error.message);
     }
   };
 

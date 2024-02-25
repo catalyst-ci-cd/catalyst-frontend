@@ -7,7 +7,7 @@ export type Response<T> =
     }
   | {
       status: 'error';
-      error: unknown;
+      error: any;
     };
 
 const axiosInstance = axios.create({

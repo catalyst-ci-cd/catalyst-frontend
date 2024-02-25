@@ -5,10 +5,13 @@ import NotFound from './pages/NotFound';
 import Landing from './pages/Landing';
 import AddWorkFlow from './pages/AddWorkflow';
 import EditWorkFlow from './pages/EditWorkflow';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <div className="font-roboto">
+      <ToastContainer />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

@@ -3,6 +3,7 @@ import Spinner from '@/components/Spinner';
 import { useState } from 'react';
 import { CreateWorkflowHandler } from '@/services/WorkflowApi';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export interface IWorflowFormInput {
   name: string;
@@ -19,14 +20,26 @@ const AddWorkFlow = () => {
     HTMLFormElement
   > = async event => {
     event.preventDefault();
+
+    if (workflowName === '') {
+      toast.error('Workflow name cannot be empty');
+      return;
+    }
+
+    if (workflowContent === '') {
+      toast.error('Workflow content cannot be empty');
+      return;
+    }
+
     const response = await CreateWorkflowHandler({
       name: workflowName,
       content: workflowContent,
     });
     if (response.status === 'success') {
+      toast.success(response.data.message);
       navigate('/dashboard/workflows');
     } else {
-      console.log(response.error);
+      toast.error(response.error.message);
     }
   };
 
