@@ -12,8 +12,8 @@ export interface IWorflowFormInput {
 const AddWorkFlow = () => {
   const navigate = useNavigate();
 
-  const [workflowName, setWorkflowName] = useState('');
-  const [workflowContent, setWorkflowContent] = useState('');
+  const [workflowName, setWorkflowName] = useState<string>('');
+  const [workflowContent, setWorkflowContent] = useState<string>('');
 
   const handleCreateWorkflow: React.FormEventHandler<
     HTMLFormElement

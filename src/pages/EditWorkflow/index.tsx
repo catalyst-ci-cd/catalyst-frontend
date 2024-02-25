@@ -1,13 +1,44 @@
 import Editor from '@monaco-editor/react';
 import Spinner from '@/components/Spinner';
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { EditWorkflowHandler } from '@/services/WorkflowApi';
+
+export interface IWorflowUpdateFormInput {
+  content: string;
+}
 
 const EditWorkFlow = () => {
-  function handleEditorChange(value: string) {
-    console.log('here is the current model value:', value);
-  }
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  const [workflowContent, setWorkflowContent] = useState<string>('');
+
+  const handleEditWorkflow: React.FormEventHandler<
+    HTMLFormElement
+  > = async event => {
+    event.preventDefault();
+    const response = await EditWorkflowHandler(
+      {
+        content: workflowContent,
+      },
+      id!,
+    );
+
+    if (response.status === 'success') {
+      navigate('/dashboard/workflows');
+    } else {
+      console.log(response.error);
+    }
+  };
+
   return (
     <div className=" bg-primary">
-      <div className="container flex gap-8 items-center justify-between flex-col py-8 sm:flex-row min-h-screen">
+      <form
+        className="container flex gap-8 items-center justify-between flex-col py-8 sm:flex-row min-h-screen"
+        onSubmit={handleEditWorkflow}
+      >
         <div className="sm:w-1/2 w-full">
           <Editor
             defaultLanguage="yaml"
@@ -15,23 +46,19 @@ const EditWorkFlow = () => {
             theme="vs-dark"
             height="100vh"
             width="100%"
-            onChange={handleEditorChange}
             loading={<Spinner />}
+            onMount={editor => {
+              editor.focus();
+            }}
+            onChange={value => setWorkflowContent(value!)}
           />
         </div>
         <div className="flex flex-col gap-4  sm:w-1/2 w-full">
-          <input
-            type="text"
-            name="workflow-name"
-            id="workflow-name"
-            placeholder="Workflow name..."
-            className=" bg-transparent  text-white p-2 border-b-2 border-accent outline-none focus:border-primary transition-all duration-300 ease-in-out w-full "
-          />
           <button className="bg-white text-primary p-2 rounded-md hover:bg-primary hover:text-white  transition-all duration-300 ease-in-out hover:border-accent border-2 border-primary w-full whitespace-nowrap ">
-            Save Workflow
+            Update Workflow
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
