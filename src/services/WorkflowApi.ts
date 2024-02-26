@@ -69,11 +69,15 @@ export const EditWorkflowHandler = async (
     const requestBody: IEditRequestBody = {
       content: data.content,
     };
-    const response = await axiosInstance.put(`/workflows/${id}`, requestBody, {
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjF9.s4vE0w6cUg68FMf7GjCRpweMCQ92MdFjYM5apky7MHE`,
+    const response = await axiosInstance.patch(
+      `/workflows/${id}`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjF9.s4vE0w6cUg68FMf7GjCRpweMCQ92MdFjYM5apky7MHE`,
+        },
       },
-    });
+    );
     return {
       status: 'success',
       data: response.data,
