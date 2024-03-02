@@ -1,8 +1,8 @@
 import Editor from '@monaco-editor/react';
 import Spinner from '@/components/Spinner';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { EditWorkflowHandler } from '@/services/WorkflowApi';
+import { EditWorkflowHandler, getWorkflowById } from '@/services/WorkflowApi';
 import { toast } from 'react-toastify';
 
 export interface IWorflowUpdateFormInput {
@@ -15,6 +15,18 @@ const EditWorkFlow = () => {
   const { id } = useParams();
 
   const [workflowContent, setWorkflowContent] = useState<string>('');
+
+  useEffect(() => {
+    const fetchWorkflow = async () => {
+      const response = await getWorkflowById(id!);
+      if (response.status === 'success') {
+        setWorkflowContent(response.data.workflow.content);
+      } else {
+        toast.error(response.error.message);
+      }
+    };
+    fetchWorkflow();
+  }, [id]);
 
   const handleEditWorkflow: React.FormEventHandler<
     HTMLFormElement
@@ -50,7 +62,6 @@ const EditWorkFlow = () => {
         <div className="sm:w-1/2 w-full">
           <Editor
             defaultLanguage="yaml"
-            defaultValue="// write your code here"
             theme="vs-dark"
             height="100vh"
             width="100%"
@@ -59,6 +70,7 @@ const EditWorkFlow = () => {
               editor.focus();
             }}
             onChange={value => setWorkflowContent(value!)}
+            value={workflowContent}
           />
         </div>
         <div className="flex flex-col gap-4  sm:w-1/2 w-full">

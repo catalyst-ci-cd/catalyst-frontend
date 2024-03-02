@@ -193,3 +193,32 @@ export const listWorkflows = async (
     };
   }
 };
+
+interface IGetWorkflowByIdResponseBody {
+  message: string;
+  workflow: {
+    id: number;
+    user_id: number;
+    name: string;
+    created_at: string;
+    deleted_at: string;
+    content: string;
+  };
+}
+export const getWorkflowById = async (
+  workflowId: string,
+): Promise<Response<IGetWorkflowByIdResponseBody>> => {
+  try {
+    const url = `/workflows/${workflowId}`;
+    const response = await axiosInstance.get(url);
+    return {
+      status: 'success',
+      data: response.data,
+    };
+  } catch (errors) {
+    return {
+      status: 'error',
+      error: (errors as AxiosError).response?.data,
+    };
+  }
+};
