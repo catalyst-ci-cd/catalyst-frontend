@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton, Tooltip } from '@mui/material';
 import { FaEdit } from 'react-icons/fa';
+import { AiFillDelete } from 'react-icons/ai';
 
 export interface IRowData {
   id: number;
@@ -27,13 +28,20 @@ const ColumnDefinition: columnType<IRowData>[] = [
     width: 30,
     type: 'custom',
     content: row => (
-      <Tooltip title={'Edit Workflow'} arrow>
-        <IconButton>
-          <Link to={`/dashboard/edit-workflow/${row.id}`}>
-            <FaEdit className="text-white" />
-          </Link>
-        </IconButton>
-      </Tooltip>
+      <div className="flex  items-center gap-2">
+        <Tooltip title={'Edit Workflow'} arrow>
+          <IconButton>
+            <Link to={`/dashboard/edit-workflow/${row.id}`}>
+              <FaEdit className="text-white" />
+            </Link>
+          </IconButton>
+        </Tooltip>
+        <Tooltip title={'Delete Workflow'} arrow>
+          <IconButton>
+            <AiFillDelete className="text-white" />
+          </IconButton>
+        </Tooltip>
+      </div>
     ),
   },
 ];
