@@ -46,7 +46,7 @@ const AddWorkFlow = () => {
   return (
     <div className=" bg-primary">
       <form
-        className="container flex gap-8 items-center justify-between flex-col py-8 sm:flex-row min-h-screen"
+        className="container flex gap-8 items-center justify-between flex-col sm:flex-row min-h-screen"
         onSubmit={handleCreateWorkflow}
       >
         <div className="sm:w-1/2 w-full">
@@ -69,7 +69,7 @@ const AddWorkFlow = () => {
             name="workflow-name"
             id="workflow-name"
             placeholder="Workflow name..."
-            className=" bg-transparent  text-white p-2 border-b-2 border-accent outline-none focus:border-primary transition-all duration-300 ease-in-out w-full "
+            className=" bg-transparent text-white p-2 border-b-2 border-accent outline-none focus:border-primary transition-all duration-300 ease-in-out w-full "
             value={workflowName}
             onChange={e => setWorkflowName(e.target.value)}
           />

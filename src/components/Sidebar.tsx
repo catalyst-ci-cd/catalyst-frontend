@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { IoMenu } from 'react-icons/io5';
 
 const pages = [
-  { name: 'Editor', path: '/dashboard/editor' },
+  { name: 'Add Workflow', path: '/dashboard/add-workflow' },
   { name: 'Workflows', path: '/dashboard/workflows' },
   { name: 'Workflows Runs', path: '/dashboard/runs' },
-  { name: 'Jobs', path: '/dashboard/jobs/' },
+  { name: 'Jobs', path: '/dashboard/jobs' },
 ];
 
 const Sidebar = () => {
@@ -48,7 +48,7 @@ const Sidebar = () => {
       <div className="lg:hidden fixed right-4 top-4">
         <button
           onClick={() => setOpenSidebarDrawer(true)}
-          className="text-white text-3xl p-2 m-3 border border-solid border-tertiary bg-secondary rounded-lg"
+          className="text-white text-3xl p-2 m-3 border border-solid border-tertiary bg-secondary rounded-lg "
         >
           <IoMenu />
         </button>
