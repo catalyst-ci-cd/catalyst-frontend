@@ -63,11 +63,13 @@ function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
               <TableRow key={index}>
                 {columns.map(column =>
                   column.type === 'text' ? (
-                    <TableCell>
+                    <TableCell key={column.name}>
                       {row[column.name as keyof T] as ReactNode}
                     </TableCell>
                   ) : (
-                    <TableCell>{column.content(row)}</TableCell>
+                    <TableCell key={column.name}>
+                      {column.content(row)}
+                    </TableCell>
                   ),
                 )}
               </TableRow>

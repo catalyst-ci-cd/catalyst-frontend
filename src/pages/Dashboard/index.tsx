@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router';
 import RunDetails from './RunDetails';
 import JobDetails from './JobDetails';
 import Workflows from './Workflows';
+import AddWorkFlow from '../AddWorkflow';
+import EditWorkFlow from '../EditWorkflow';
 
 const Dashboard = () => {
   return (
@@ -15,6 +17,8 @@ const Dashboard = () => {
           <Route path="runs" element={<Runs />} />
           <Route path="runs/:run_id" element={<RunDetails />} />
           <Route path="runs/:run_id/jobs/:job_id" element={<JobDetails />} />
+          <Route path="add-workflow" element={<AddWorkFlow />} />
+          <Route path="edit-workflow/:id" element={<EditWorkFlow />} />
         </Routes>
       </div>
     </div>
