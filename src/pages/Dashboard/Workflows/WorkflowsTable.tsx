@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { IconButton, Tooltip } from '@mui/material';
 import { FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
+import { deleteSingleWorkflow } from '@/services/WorkflowApi';
+import { toast } from 'react-toastify';
 
 export interface IRowData {
-  id: number;
+  id: string;
   name: string;
 }
 
@@ -37,7 +39,18 @@ const ColumnDefinition: columnType<IRowData>[] = [
           </IconButton>
         </Tooltip>
         <Tooltip title={'Delete Workflow'} arrow>
-          <IconButton>
+          <IconButton
+            onClick={async () => {
+              const response = await deleteSingleWorkflow(row.id);
+              if (response.status === 'success') {
+                toast.success('Workflow deleted successfully');
+                // Refresh the table
+                window.location.reload();
+              } else {
+                toast.error(response.error.message);
+              }
+            }}
+          >
             <AiFillDelete className="text-white" />
           </IconButton>
         </Tooltip>

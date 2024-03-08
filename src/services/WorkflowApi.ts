@@ -254,3 +254,25 @@ export const getWorkflowById = async (
     };
   }
 };
+
+export const deleteSingleWorkflow = async (
+  workflowId: string,
+): Promise<Response<null>> => {
+  try {
+    const url = `/workflows/${workflowId}`;
+    const response = await axiosInstance.delete(url, {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjF9.s4vE0w6cUg68FMf7GjCRpweMCQ92MdFjYM5apky7MHE`,
+      },
+    });
+    return {
+      status: 'success',
+      data: response.data,
+    };
+  } catch (errors) {
+    return {
+      status: 'error',
+      error: (errors as AxiosError).response?.data,
+    };
+  }
+};
