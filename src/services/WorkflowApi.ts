@@ -166,7 +166,7 @@ export const getWorkflowResults = async (
   workflowId: string,
 ): Promise<Response<IGetWorkflowResultsResponseBody>> => {
   try {
-    const url = `/workflow-results/${workflowId}/?userId=${userId}`;
+    const url = `/workflow-results/${workflowId}?userId=${userId}`;
     const response = await axiosInstance.get(url);
     return {
       status: 'success',
