@@ -49,9 +49,7 @@ interface ILoginRequestBody {
 
 interface ILoginResponseBody {
   message: string;
-  data: {
-    jwtToken: string;
-  };
+  token: string;
 }
 
 export const LoginHandler = async (

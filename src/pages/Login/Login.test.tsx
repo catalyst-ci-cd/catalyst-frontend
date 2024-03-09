@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import Login, { ILoginFormInput } from '.';
+import { AuthContextProvider } from '@/contexts/AuthContext';
 
 // Mocks
 const mockLoginHandler = vi.fn();
@@ -26,7 +27,9 @@ describe('Login', () => {
   it('Should render email and password field and login button', async () => {
     render(
       <BrowserRouter>
-        <Login />
+        <AuthContextProvider>
+          <Login />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -39,7 +42,9 @@ describe('Login', () => {
   it('should log in successfully when valid email and password are provided', async () => {
     render(
       <BrowserRouter>
-        <Login />
+        <AuthContextProvider>
+          <Login />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -61,7 +66,9 @@ describe('Login', () => {
   it("shouldn't log in  when missing email", async () => {
     render(
       <BrowserRouter>
-        <Login />
+        <AuthContextProvider>
+          <Login />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -78,7 +85,9 @@ describe('Login', () => {
   it("shouldn't log in  when missing password", async () => {
     render(
       <BrowserRouter>
-        <Login />
+        <AuthContextProvider>
+          <Login />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -95,7 +104,9 @@ describe('Login', () => {
   it("shouldn't log in  when invalid email or password are provided", async () => {
     render(
       <BrowserRouter>
-        <Login />
+        <AuthContextProvider>
+          <Login />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
     const emailInput = screen.getByPlaceholderText('Email');

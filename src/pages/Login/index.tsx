@@ -4,19 +4,21 @@ import CheckBoxField from '@/components/forms/CheckBoxField';
 import TextField from '@/components/forms/TextField';
 import GoogleLogin from '@/components/forms/GoogleLogin';
 import GithubLogin from '@/components/forms/GithubLogin';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { LoginHandler } from '@/services/AccountApi';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export interface ILoginFormInput {
   email: string;
   password: string;
 }
 const Login = () => {
+  const { token, setToken } = useAuthContext();
+  const navigate = useNavigate();
   const [formInput, setFormInput] = useState<ILoginFormInput>({
     email: '',
     password: '',
   });
-  const navigate = useNavigate();
   const handleChange = (value: string, name: keyof ILoginFormInput) => {
     setFormInput(prevData => ({ ...prevData, [name]: value }));
   };
@@ -26,14 +28,19 @@ const Login = () => {
       const response = await LoginHandler(formInput);
 
       if (response.status === 'success') {
-        console.log(response.data);
-        navigate('/');
+        setToken(response.data.token);
+        navigate('/dashboard/workflows');
       } else {
         console.log(response.error);
       }
     },
-    [formInput, navigate],
+    [formInput, navigate, setToken],
   );
+  useEffect(() => {
+    if (token !== null) {
+      navigate('/dashboard/workflows/');
+    }
+  }, [navigate, token]);
   return (
     <div className="sm:grid sm:place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
       <form

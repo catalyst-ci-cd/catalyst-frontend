@@ -21,7 +21,7 @@ interface IWorkflowRunDetails {
 
 const workflowRunDetails: IWorkflowRunDetails = {
   name: 'Workflow Name',
-  status: 'running',
+  status: 'pending',
   duration: '00:01:07',
   filename: 'test-workflow1.yml',
 };

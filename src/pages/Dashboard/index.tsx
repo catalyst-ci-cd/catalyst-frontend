@@ -6,14 +6,15 @@ import JobDetails from './JobDetails';
 import Workflows from './Workflows';
 import AddWorkFlow from '../AddWorkflow';
 import EditWorkFlow from '../EditWorkflow';
+import WithAuth from '@/HOCs/WithAuth';
 
-const Dashboard = () => {
+const Dashboard = WithAuth(() => {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
       <div className="bg-primary flex-1 p-5">
         <Routes>
-          <Route path="workflows" element={<Workflows />} />
+          <Route index path="workflows" element={<Workflows />} />
           <Route path="runs" element={<Runs />} />
           <Route path="runs/:run_id" element={<RunDetails />} />
           <Route path="runs/:run_id/jobs/:job_id" element={<JobDetails />} />
@@ -23,6 +24,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Dashboard;

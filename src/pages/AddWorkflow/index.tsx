@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { CreateWorkflowHandler } from '@/services/WorkflowApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export interface IWorflowFormInput {
   name: string;
@@ -12,7 +13,7 @@ export interface IWorflowFormInput {
 
 const AddWorkFlow = () => {
   const navigate = useNavigate();
-
+  const { token } = useAuthContext();
   const [workflowName, setWorkflowName] = useState<string>('');
   const [workflowContent, setWorkflowContent] = useState<string>('');
 
@@ -31,10 +32,13 @@ const AddWorkFlow = () => {
       return;
     }
 
-    const response = await CreateWorkflowHandler({
-      name: workflowName,
-      content: workflowContent,
-    });
+    const response = await CreateWorkflowHandler(
+      {
+        name: workflowName,
+        content: workflowContent,
+      },
+      token!,
+    );
     if (response.status === 'success') {
       toast.success(response.data.message);
       navigate('/dashboard/workflows');
