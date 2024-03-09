@@ -6,6 +6,7 @@ import { FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import { deleteSingleWorkflow } from '@/services/WorkflowApi';
 import { toast } from 'react-toastify';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export interface IRowData {
   id: string;
@@ -18,7 +19,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
     displayName: 'Name',
     type: 'custom',
 
-    content: row => (
+    content: ({ row }) => (
       <Link to={`${row.id}`} className="hover:underline text-blue-200">
         {row.name}
       </Link>
@@ -29,7 +30,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
     displayName: 'Actions',
     width: 30,
     type: 'custom',
-    content: row => (
+    content: ({ row, token }) => (
       <div className="flex  items-center gap-2">
         <Tooltip title={'Edit Workflow'} arrow>
           <IconButton>
@@ -41,7 +42,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
         <Tooltip title={'Delete Workflow'} arrow>
           <IconButton
             onClick={async () => {
-              const response = await deleteSingleWorkflow(row.id);
+              const response = await deleteSingleWorkflow(row.id, token);
               if (response.status === 'success') {
                 toast.success('Workflow deleted successfully');
                 // Refresh the table
@@ -64,7 +65,8 @@ interface WorkflowsTableProps {
 }
 
 const WorkflowsTable: FC<WorkflowsTableProps> = ({ data }) => {
-  return <GenericTable columns={ColumnDefinition} data={data} />;
+  const { token } = useAuthContext();
+  return <GenericTable columns={ColumnDefinition} data={data} token={token!} />;
 };
 
 export default WorkflowsTable;

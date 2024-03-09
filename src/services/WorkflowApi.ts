@@ -3,7 +3,6 @@ import axiosInstance, { Response } from './axiosInstance';
 import { IWorflowFormInput } from '@/pages/AddWorkflow';
 import { IWorflowUpdateFormInput } from '@/pages/EditWorkflow';
 import { statusType } from '@/components/StatusLabel';
-
 interface ICreateRequestBody {
   name: string;
   content: string;
@@ -257,12 +256,13 @@ export const getWorkflowById = async (
 
 export const deleteSingleWorkflow = async (
   workflowId: string,
+  token: string,
 ): Promise<Response<null>> => {
   try {
     const url = `/workflows/${workflowId}`;
     const response = await axiosInstance.delete(url, {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjF9.s4vE0w6cUg68FMf7GjCRpweMCQ92MdFjYM5apky7MHE`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return {
