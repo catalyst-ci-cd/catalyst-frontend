@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { EditWorkflowHandler, getWorkflowById } from '@/services/WorkflowApi';
 import { toast } from 'react-toastify';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export interface IWorflowUpdateFormInput {
   content: string;
@@ -11,8 +12,8 @@ export interface IWorflowUpdateFormInput {
 
 const EditWorkFlow = () => {
   const navigate = useNavigate();
-
   const { id } = useParams();
+  const { token } = useAuthContext();
 
   const [workflowContent, setWorkflowContent] = useState<string>('');
 
@@ -43,6 +44,7 @@ const EditWorkFlow = () => {
         content: workflowContent,
       },
       id!,
+      token!,
     );
 
     if (response.status === 'success') {

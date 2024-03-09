@@ -4,7 +4,7 @@ import { MdCancel } from 'react-icons/md';
 import { TiCancel } from 'react-icons/ti';
 import { IoTimeSharp } from 'react-icons/io5';
 
-export type statusType = 'passed' | 'failed' | 'running' | 'canceled';
+export type statusType = 'passed' | 'failed' | 'pending' | 'canceled';
 interface StatusLabelProps {
   type: statusType;
 }
@@ -19,10 +19,10 @@ const StatusLabel: FC<StatusLabelProps> = ({ type }) => {
       <MdCancel />
       <p className="text-white text-base">failed</p>
     </div>
-  ) : type === 'running' ? (
+  ) : type === 'pending' ? (
     <div className="flex items-center gap-2 w-fit m-auto rounded-full px-2 bg-yellow-600 text-lg text-white ">
       <IoTimeSharp />
-      <p className="text-white text-base">running</p>
+      <p className="text-white text-base">pending</p>
     </div>
   ) : (
     <div className="flex items-center gap-2 w-fit m-auto rounded-full px-2 bg-gray-500 text-lg text-white ">

@@ -22,7 +22,8 @@ interface ICreateResponseBody {
 }
 
 export const CreateWorkflowHandler = async (
-  data: IWorflowFormInput,token:string
+  data: IWorflowFormInput,
+  token: string,
 ): Promise<Response<ICreateResponseBody>> => {
   try {
     const requestBody: ICreateRequestBody = {
@@ -65,7 +66,7 @@ interface IEditResponseBody {
 export const EditWorkflowHandler = async (
   data: IWorflowUpdateFormInput,
   id: string,
-  token: string
+  token: string,
 ): Promise<Response<IEditResponseBody>> => {
   try {
     const requestBody: IEditRequestBody = {
@@ -106,20 +107,19 @@ export const listWorkflowsResults = async (
 ): Promise<Response<IListWorkflowsResultsResponseBody>> => {
   try {
     return {
-      status: "success",
-      data: 
-        {
-          message: "asdasd",
-          workflows_results: [
-            {
-              id: 1,
-              state: "passed",
-              workflow_id: 1,
-              workflow_name: "test.yml"
-            }
-          ]
-        }
-    }
+      status: 'success',
+      data: {
+        message: 'asdasd',
+        workflows_results: [
+          {
+            id: 1,
+            state: 'passed',
+            workflow_id: 1,
+            workflow_name: 'test.yml',
+          },
+        ],
+      },
+    };
     const url = `/workflow-results/?userId=${userId}`;
     const response = await axiosInstance.get(url);
     return {
@@ -197,21 +197,21 @@ export const listWorkflows = async (
 ): Promise<Response<IListWorkflowsResponseBody>> => {
   try {
     return {
-      status: "success",
+      status: 'success',
       data: {
-        message: "asd",
+        message: 'asd',
         workflows: [
           {
             id: 1,
-            content: "asdsad",
-            created_at: "11-11-2002",
-            deleted_at: "11-11-2002",
-            name: "myworkflow",
-            user_id:1
-          }
-        ]
-      }
-    }
+            content: 'asdsad',
+            created_at: '11-11-2002',
+            deleted_at: '11-11-2002',
+            name: 'myworkflow',
+            user_id: 1,
+          },
+        ],
+      },
+    };
     const url = `/workflows/?userId=${userId}`;
     const response = await axiosInstance.get(url);
     return {

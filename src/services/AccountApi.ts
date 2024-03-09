@@ -49,7 +49,7 @@ interface ILoginRequestBody {
 
 interface ILoginResponseBody {
   message: string;
-  token: string
+  token: string;
 }
 
 export const LoginHandler = async (

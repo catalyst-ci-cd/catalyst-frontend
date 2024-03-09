@@ -6,8 +6,9 @@ import JobDetails from './JobDetails';
 import Workflows from './Workflows';
 import AddWorkFlow from '../AddWorkflow';
 import EditWorkFlow from '../EditWorkflow';
+import WithAuth from '@/HOCs/WithAuth';
 
-const Dashboard = () => {
+const Dashboard = WithAuth(() => {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
@@ -23,6 +24,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Dashboard;
