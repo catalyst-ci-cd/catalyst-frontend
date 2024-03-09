@@ -4,8 +4,9 @@ import CheckBoxField from '@/components/forms/CheckBoxField';
 import TextField from '@/components/forms/TextField';
 import StyledGoogleLogin from '@/components/forms/GoogleLogin';
 import StyledGithubLogin from '@/components/forms/GithubLogin';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SignUpHandler } from '@/services/AccountApi';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export interface ISignUpFormInput {
   firstName: string;
@@ -17,6 +18,7 @@ export interface ISignUpFormInput {
 }
 
 const Signup = () => {
+  const { token } = useAuthContext();
   const [formInput, setFormInput] = useState<ISignUpFormInput>({
     firstName: '',
     lastName: '',
@@ -41,7 +43,11 @@ const Signup = () => {
     },
     [formInput, navigate],
   );
-
+  useEffect(() => {
+    if (token !== null) {
+      navigate('/dashboard/workflows/');
+    }
+  }, [navigate, token]);
   return (
     <div className="sm:grid sm:place-content-center min-h-screen bg-gradient-to-tr from-primary to-secondary font-roboto text-white">
       <form

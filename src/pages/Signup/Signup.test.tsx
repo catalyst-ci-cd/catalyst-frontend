@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import Signup, { ISignUpFormInput } from '.';
+import { AuthContextProvider } from '@/contexts/AuthContext';
 
 // Mocks
 const mockSignUpHandler = vi.fn();
@@ -26,7 +27,9 @@ describe('Signup', () => {
   it('Should render all input field and signup button', async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
     const firstnameInput = screen.getByPlaceholderText('First Name');
@@ -48,7 +51,9 @@ describe('Signup', () => {
   it('should sign up successfully when valid input is provided', async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
     const firstnameInput = screen.getByPlaceholderText('First Name');
@@ -89,7 +94,9 @@ describe('Signup', () => {
   it("shouldn't log in  when missing first name", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -124,7 +131,9 @@ describe('Signup', () => {
   it("shouldn't log in  when missing last name", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -159,7 +168,9 @@ describe('Signup', () => {
   it("shouldn't log in  when missing username", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -194,7 +205,9 @@ describe('Signup', () => {
   it("shouldn't log in  when missing email", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -229,7 +242,9 @@ describe('Signup', () => {
   it("shouldn't log in  when missing password", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -264,7 +279,9 @@ describe('Signup', () => {
   it("shouldn't log in  when missing confirm password", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 
@@ -300,7 +317,9 @@ describe('Signup', () => {
   it("shouldn't log in  when invalid email is provided", async () => {
     render(
       <BrowserRouter>
-        <Signup />
+        <AuthContextProvider>
+          <Signup />
+        </AuthContextProvider>
       </BrowserRouter>,
     );
 

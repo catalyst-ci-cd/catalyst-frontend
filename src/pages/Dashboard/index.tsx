@@ -14,7 +14,7 @@ const Dashboard = WithAuth(() => {
       <Sidebar />
       <div className="bg-primary flex-1 p-5">
         <Routes>
-          <Route path="workflows" element={<Workflows />} />
+          <Route index path="workflows" element={<Workflows />} />
           <Route path="runs" element={<Runs />} />
           <Route path="runs/:run_id" element={<RunDetails />} />
           <Route path="runs/:run_id/jobs/:job_id" element={<JobDetails />} />
