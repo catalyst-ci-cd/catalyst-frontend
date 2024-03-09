@@ -25,9 +25,10 @@ export type columnType<T> =
 interface GenericTableProps<T> {
   columns: columnType<T>[];
   data: T[];
+  token?: string;
 }
 
-function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
+function GenericTable<T>({ columns, data, token }: GenericTableProps<T>) {
   return (
     <div className="rounded-md my-2 bg-secondary p-3 border border-solid border-tertiary shadow-xl shadow-secondary  overflow-auto">
       <TableContainer
@@ -68,7 +69,7 @@ function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
                     </TableCell>
                   ) : (
                     <TableCell key={column.name}>
-                      {column.content(row)}
+                      {column.content({ row, token })}
                     </TableCell>
                   ),
                 )}
