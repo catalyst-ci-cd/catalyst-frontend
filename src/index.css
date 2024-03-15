@@ -29,3 +29,15 @@
 .secondary-btn {
   @apply bg-secondary text-white rounded-md py-1 px-4 text-lg font-semibold;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e48f45;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
