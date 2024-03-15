@@ -6,7 +6,7 @@ const Header = () => {
         id="header"
       >
         <h1 className="leading-normal">
-          Streamline Your Software Development with Our Cutting-Edge
+          Streamline Your Software Development with Our Cutting-Edge{' '}
           <span className="text-accent">CI/CD Tool</span>
         </h1>
         <p className="max-w-lg">
