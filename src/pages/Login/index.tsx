@@ -5,6 +5,7 @@ import GoogleLogin from '@/components/forms/GoogleLogin';
 import React, { useCallback, useEffect, useState } from 'react';
 import { LoginHandler } from '@/services/AccountApi';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 export interface ILoginFormInput {
   email: string;
@@ -23,20 +24,32 @@ const Login = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     async event => {
       event.preventDefault();
+
+      // check empty fields
+      const emptyFields = Object.entries(formInput).filter(
+        ([, value]) => value.trim() === '',
+      );
+
+      if (emptyFields.length > 0) {
+        toast.error('Please fill all fields');
+        return;
+      }
+
       const response = await LoginHandler(formInput);
 
       if (response.status === 'success') {
+        toast.success('Logged in successfully');
         setToken(response.data.token);
         navigate('/dashboard/workflows');
       } else {
-        console.log(response.error);
+        toast.error(response.error.message);
       }
     },
     [formInput, navigate, setToken],
   );
   useEffect(() => {
     if (token !== null) {
-      navigate('/dashboard/workflows/');
+      navigate('/dashboard/workflows');
     }
   }, [navigate, token]);
   return (

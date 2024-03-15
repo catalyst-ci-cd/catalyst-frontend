@@ -5,6 +5,7 @@ import StyledGoogleLogin from '@/components/forms/GoogleLogin';
 import { useCallback, useEffect, useState } from 'react';
 import { SignUpHandler } from '@/services/AccountApi';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 export interface ISignUpFormInput {
   firstName: string;
@@ -32,11 +33,29 @@ const Signup = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     async event => {
       event.preventDefault();
+
+      // check empty fields
+      const emptyFields = Object.entries(formInput).filter(
+        ([, value]) => value.trim() === '',
+      );
+
+      if (emptyFields.length > 0) {
+        toast.error('Please fill all fields');
+        return;
+      }
+
+      // check password match
+      if (formInput.password !== formInput.confirmPassword) {
+        toast.error('Password does not match');
+        return;
+      }
+
       const response = await SignUpHandler(formInput);
       if (response.status === 'success') {
+        toast.success('Account created successfully');
         navigate('/login');
       } else {
-        console.log(response.error);
+        toast.error(response.error.message);
       }
     },
     [formInput, navigate],
