@@ -1,6 +1,7 @@
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.webp';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -17,7 +18,9 @@ const Navbar = () => {
   return (
     <nav className="py-8">
       <div className="container flex justify-between items-center">
-        <div className="text-white uppercase text-2xl font-bold">Catalyst</div>
+        <div>
+          <img src={logo} alt="Catalyst" className="w-32" />
+        </div>
         <div className="hidden md:block">
           <ul className="flex items-center gap-8 text-tertiary text-lg">
             <li

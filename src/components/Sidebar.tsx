@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMenu } from 'react-icons/io5';
 import { toast } from 'react-toastify';
+import logo from '../assets/logo.webp';
 
 const pages = [
   { name: 'Add Workflow', path: '/workflows/add-workflow' },
@@ -25,7 +26,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="hidden p-5 w-[300px] bg-secondary text-white lg:flex lg:flex-col">
-        <h3 className="text-white uppercase text-2xl font-bold">Catalyst</h3>
+        <img src={logo} alt="Catalyst" className=" w-40 mx-auto" />
         <ul>
           {pages.map(page => (
             <li
@@ -70,7 +71,7 @@ const Sidebar = () => {
         open={openSidebarDrawer}
         onClose={() => setOpenSidebarDrawer(false)}
       >
-        <h3>Catalyst</h3>
+        <img src={logo} alt="Catalyst" className=" w-40 mx-auto" />
         <ul>
           {pages.map(page => (
             <li
