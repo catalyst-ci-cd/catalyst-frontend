@@ -49,8 +49,9 @@ const Sidebar = () => {
           className="primary-btn"
           onClick={() => {
             localStorage.removeItem('token');
-            toast.success('Logged out successfully');
-            window.location.href = '/login';
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           }}
         >
           Sign Out
