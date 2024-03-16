@@ -19,6 +19,7 @@ const Sidebar = () => {
     if (page) {
       setSelectedPage(page.name);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.location.pathname]);
   return (
     <>
