@@ -58,15 +58,14 @@ const EditWorkFlow = () => {
   return (
     <div className=" bg-primary">
       <form
-        className="container flex gap-8 items-center justify-between flex-col py-8 sm:flex-row min-h-screen"
+        className="container flex gap-8 items-center justify-between flex-col sm:flex-row"
         onSubmit={handleEditWorkflow}
       >
         <div className="sm:w-1/2 w-full">
           <Editor
             defaultLanguage="yaml"
             theme="vs-dark"
-            height="100vh"
-            width="100%"
+            height="80vh"
             loading={<Spinner />}
             onMount={editor => {
               editor.focus();
@@ -76,9 +75,7 @@ const EditWorkFlow = () => {
           />
         </div>
         <div className="flex flex-col gap-4  sm:w-1/2 w-full">
-          <button className="bg-white text-primary p-2 rounded-md hover:bg-primary hover:text-white  transition-all duration-300 ease-in-out hover:border-accent border-2 border-primary w-full whitespace-nowrap ">
-            Update Workflow
-          </button>
+          <button className="primary-btn">Update Workflow</button>
         </div>
       </form>
     </div>

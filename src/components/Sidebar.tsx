@@ -25,8 +25,8 @@ const Sidebar = () => {
   return (
     <>
       <div className="hidden lg:block p-5 w-[300px] bg-secondary text-white">
-        <h3>Catalyst</h3>
-        <ul className="p-4">
+        <h3 className="text-white uppercase text-2xl font-bold">Catalyst</h3>
+        <ul>
           {pages.map(page => (
             <li
               key={page.name}
@@ -45,7 +45,7 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
-      <div className="lg:hidden fixed right-4 top-4">
+      <div className="lg:hidden fixed right-4 top-4 z-10">
         <button
           onClick={() => setOpenSidebarDrawer(true)}
           className="text-white text-3xl p-2 m-3 border border-solid border-tertiary bg-secondary rounded-lg "
