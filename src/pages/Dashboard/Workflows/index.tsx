@@ -43,7 +43,7 @@ const Workflows = () => {
             No Workflows Found
           </p>
           <a
-            href="#"
+            href="/dashboard/add-workflow"
             className="bg-accent block m-auto px-4 py-2 text-xl w-fit shadow-lg shadow-slate-600 rounded-md"
           >
             Add Workflow
