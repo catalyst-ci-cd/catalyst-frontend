@@ -7,6 +7,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { deleteSingleWorkflow } from '@/services/WorkflowApi';
 import { toast } from 'react-toastify';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { AxiosError } from 'axios';
 
 export interface IRowData {
   id: string;
@@ -19,9 +20,9 @@ const ColumnDefinition: columnType<IRowData>[] = [
     displayName: 'Name',
     type: 'custom',
 
-    content: ({ row }) => (
-      <Link to={`${row.id}`} className="hover:underline text-blue-200">
-        {row.name}
+    content: row => (
+      <Link to={`${row.data.id}`} className="hover:underline text-blue-200">
+        {row.data.name}
       </Link>
     ),
   },
@@ -30,33 +31,41 @@ const ColumnDefinition: columnType<IRowData>[] = [
     displayName: 'Actions',
     width: 30,
     type: 'custom',
-    content: ({ row, token }) => (
-      <div className="flex  items-center gap-2">
-        <Tooltip title={'Edit Workflow'} arrow>
-          <IconButton>
-            <Link to={`/workflows/edit-workflow/${row.id}`}>
-              <FaEdit className="text-white" />
-            </Link>
-          </IconButton>
-        </Tooltip>
-        <Tooltip title={'Delete Workflow'} arrow>
-          <IconButton
-            onClick={async () => {
-              const response = await deleteSingleWorkflow(row.id, token);
-              if (response.status === 'success') {
-                toast.success('Workflow deleted successfully');
-                // Refresh the table
-                window.location.reload();
-              } else {
-                toast.error(response.error.message);
-              }
-            }}
-          >
-            <AiFillDelete className="text-white" />
-          </IconButton>
-        </Tooltip>
-      </div>
-    ),
+    content: row => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const { token } = useAuthContext();
+
+      return (
+        <div className="flex  items-center gap-2">
+          <Tooltip title={'Edit Workflow'} arrow>
+            <IconButton>
+              <Link to={`/dashboard/edit-workflow/${row.data.id}`}>
+                <FaEdit className="text-white" />
+              </Link>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={'Delete Workflow'} arrow>
+            <IconButton
+              onClick={async () => {
+                const response = await deleteSingleWorkflow(
+                  row.data.id,
+                  token!,
+                );
+                if (response.status === 'success') {
+                  toast.success('Workflow deleted successfully');
+                  // Refresh the table
+                  window.location.reload();
+                } else {
+                  toast.error((response.error as AxiosError).message);
+                }
+              }}
+            >
+              <AiFillDelete className="text-white" />
+            </IconButton>
+          </Tooltip>
+        </div>
+      );
+    },
   },
 ];
 

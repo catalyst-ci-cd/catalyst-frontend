@@ -3,13 +3,15 @@ import WorkflowsTable, { IRowData } from './WorkflowsTable';
 import { listWorkflows } from '@/services/WorkflowApi';
 import Spinner from '@/components/Spinner';
 import noDataImage from '@/assets/no-data.jpg';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 const Workflows = () => {
+  const { user } = useAuthContext();
   const [workflows, setWorkflows] = useState<IRowData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const loadWorkflowRuns = useCallback(async () => {
     setIsLoading(true);
-    const result = await listWorkflows('1');
+    const result = await listWorkflows(user!.id.toString());
     setIsLoading(false);
     if (result.status === 'success') {
       const rowsData: IRowData[] = result.data.workflows.map(workflow => ({
@@ -18,7 +20,7 @@ const Workflows = () => {
       }));
       setWorkflows(rowsData);
     }
-  }, []);
+  }, [user]);
   useEffect(() => {
     loadWorkflowRuns();
   }, [loadWorkflowRuns]);

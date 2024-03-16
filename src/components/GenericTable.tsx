@@ -6,7 +6,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 export type columnType<T> =
   | {
@@ -20,15 +20,14 @@ export type columnType<T> =
       displayName: string;
       width?: number;
       type: 'custom';
-      content: (data: T) => ReactNode;
+      content: FC<{ data: T }>;
     };
 interface GenericTableProps<T> {
   columns: columnType<T>[];
   data: T[];
-  token?: string;
 }
 
-function GenericTable<T>({ columns, data, token }: GenericTableProps<T>) {
+function GenericTable<T>({ columns, data }: GenericTableProps<T>) {
   return (
     <div className="rounded-md my-2 bg-secondary p-3 border border-solid border-tertiary shadow-xl shadow-secondary  overflow-auto">
       <TableContainer
@@ -69,7 +68,7 @@ function GenericTable<T>({ columns, data, token }: GenericTableProps<T>) {
                     </TableCell>
                   ) : (
                     <TableCell key={column.name}>
-                      {column.content({ row, token })}
+                      <column.content data={row} />
                     </TableCell>
                   ),
                 )}

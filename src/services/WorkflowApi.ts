@@ -105,21 +105,7 @@ export const listWorkflowsResults = async (
   userId: string,
 ): Promise<Response<IListWorkflowsResultsResponseBody>> => {
   try {
-    return {
-      status: 'success',
-      data: {
-        message: 'asdasd',
-        workflows_results: [
-          {
-            id: 1,
-            state: 'passed',
-            workflow_id: 1,
-            workflow_name: 'test.yml',
-          },
-        ],
-      },
-    };
-    const url = `/workflow-results/?userId=${userId}`;
+    const url = `/workflow-results?userId=${userId}`;
     const response = await axiosInstance.get(url);
     return {
       status: 'success',
@@ -144,18 +130,18 @@ interface IGetWorkflowResultsResponseBody {
       time: string;
       valid: boolean;
     };
-    jobResults: {
-      id: number;
-      workflowResultID: number;
-      name: string;
-      state: statusType;
-      topologicalOrder: number;
-      stepResults: {
-        id: number;
-        jobResultID: number;
-        topologicalOrder: number;
-        isSucceeded: boolean;
-        logs: string;
+    JobResults: {
+      ID: number;
+      WorkflowResultID: number;
+      Name: string;
+      State: statusType;
+      TopologicalOrder: number;
+      StepResults: {
+        ID: number;
+        JobResultID: number;
+        TopologicalOrder: number;
+        IsSucceeded: boolean;
+        Logs: string;
       }[];
     }[];
   };
@@ -195,23 +181,7 @@ export const listWorkflows = async (
   userId: string,
 ): Promise<Response<IListWorkflowsResponseBody>> => {
   try {
-    return {
-      status: 'success',
-      data: {
-        message: 'asd',
-        workflows: [
-          {
-            id: 1,
-            content: 'asdsad',
-            created_at: '11-11-2002',
-            deleted_at: '11-11-2002',
-            name: 'myworkflow',
-            user_id: 1,
-          },
-        ],
-      },
-    };
-    const url = `/workflows/?userId=${userId}`;
+    const url = `/workflows?userId=${userId}`;
     const response = await axiosInstance.get(url);
     return {
       status: 'success',
