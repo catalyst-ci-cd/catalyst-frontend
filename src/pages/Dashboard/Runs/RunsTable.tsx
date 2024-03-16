@@ -21,7 +21,6 @@ const ColumnDefinition: columnType<IRowData>[] = [
     width: 30,
     type: 'custom',
     content: row => {
-      console.log(row);
       return <StatusLabel type={row.data.status} />;
     },
   },
@@ -50,6 +49,11 @@ const ColumnDefinition: columnType<IRowData>[] = [
   {
     name: 'duration',
     displayName: 'Duration',
+    type: 'text',
+  },
+  {
+    name: 'finished_at',
+    displayName: 'Finished At',
     type: 'text',
   },
   {

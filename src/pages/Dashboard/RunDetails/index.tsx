@@ -34,7 +34,6 @@ const RunDetails = () => {
     if (run_id) {
       const result = await getWorkflowResults(user!.id.toString(), run_id);
       if (result.status === 'success') {
-        console.log(result.data.workflow_result);
         const rowsData: IRowData[] = result.data.workflow_result.JobResults.map(
           jobRun => ({
             id: jobRun.ID,
