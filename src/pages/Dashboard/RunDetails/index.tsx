@@ -20,14 +20,13 @@ interface IWorkflowRunDetails {
   filename: string;
 }
 
-const workflowRunDetails: IWorkflowRunDetails = {
-  name: 'Workflow Name',
-  status: 'pending',
-  duration: '00:01:07',
-  filename: 'test-workflow1.yml',
-};
-
 const RunDetails = () => {
+  const [workflowRunDetails] = useState<IWorkflowRunDetails>({
+    name: 'Workflow Name',
+    status: 'pending',
+    duration: '00:01:07',
+    filename: 'test-workflow1.yml',
+  });
   const { run_id } = useParams<RunDetailsParamsType>();
   const [rows, setRows] = useState<IRowData[]>([]);
   const { user } = useAuthContext();

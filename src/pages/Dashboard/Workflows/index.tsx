@@ -15,7 +15,7 @@ const Workflows = () => {
     setIsLoading(false);
     if (result.status === 'success') {
       const rowsData: IRowData[] = result.data.workflows.map(workflow => ({
-        id: workflow.id,
+        id: workflow.id.toString(),
         name: workflow.name,
       }));
       setWorkflows(rowsData);

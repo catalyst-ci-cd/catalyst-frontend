@@ -21,7 +21,10 @@ const ColumnDefinition: columnType<IRowData>[] = [
     type: 'custom',
 
     content: row => (
-      <Link to={`${row.data.id}`} className="hover:underline text-blue-200">
+      <Link
+        to={`/dashboard/edit-workflow/${row.data.id}`}
+        className="hover:underline text-blue-200"
+      >
         {row.data.name}
       </Link>
     ),
@@ -74,8 +77,7 @@ interface WorkflowsTableProps {
 }
 
 const WorkflowsTable: FC<WorkflowsTableProps> = ({ data }) => {
-  const { token } = useAuthContext();
-  return <GenericTable columns={ColumnDefinition} data={data} token={token!} />;
+  return <GenericTable columns={ColumnDefinition} data={data} />;
 };
 
 export default WorkflowsTable;
