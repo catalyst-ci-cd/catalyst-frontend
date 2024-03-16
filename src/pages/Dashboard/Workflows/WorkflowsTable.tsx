@@ -22,7 +22,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
 
     content: row => (
       <Link
-        to={`/dashboard/edit-workflow/${row.data.id}`}
+        to={`/workflows/edit-workflow/${row.data.id}`}
         className="hover:underline text-blue-200"
       >
         {row.data.name}
@@ -42,7 +42,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
         <div className="flex  items-center gap-2">
           <Tooltip title={'Edit Workflow'} arrow>
             <IconButton>
-              <Link to={`/dashboard/edit-workflow/${row.data.id}`}>
+              <Link to={`/workflows/edit-workflow/${row.data.id}`}>
                 <FaEdit className="text-white" />
               </Link>
             </IconButton>
