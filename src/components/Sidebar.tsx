@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { IoMenu } from 'react-icons/io5';
 
 const pages = [
-  { name: 'Add Workflow', path: '/dashboard/add-workflow' },
-  { name: 'Workflows', path: '/dashboard/workflows' },
-  { name: 'Workflows Runs', path: '/dashboard/runs' },
-  { name: 'Jobs', path: '/dashboard/jobs' },
+  { name: 'Add Workflow', path: '/workflows/add-workflow' },
+  { name: 'Workflows', path: '/workflows' },
+  { name: 'Workflows Runs', path: '/workflows/runs' },
+  { name: 'Jobs', path: '/workflows/jobs' },
 ];
 
 const Sidebar = () => {

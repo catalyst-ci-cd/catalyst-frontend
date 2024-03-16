@@ -34,7 +34,7 @@ const ColumnDefinition: columnType<IRowData>[] = [
       <div className="flex  items-center gap-2">
         <Tooltip title={'Edit Workflow'} arrow>
           <IconButton>
-            <Link to={`/dashboard/edit-workflow/${row.id}`}>
+            <Link to={`/workflows/edit-workflow/${row.id}`}>
               <FaEdit className="text-white" />
             </Link>
           </IconButton>

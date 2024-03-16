@@ -41,7 +41,7 @@ const AddWorkFlow = () => {
     );
     if (response.status === 'success') {
       toast.success(response.data.message);
-      navigate('/dashboard/workflows');
+      navigate('/workflows');
     } else {
       toast.error(response.error.message);
     }

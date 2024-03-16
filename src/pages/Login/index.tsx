@@ -40,7 +40,7 @@ const Login = () => {
       if (response.status === 'success') {
         toast.success('Logged in successfully');
         setToken(response.data.token);
-        navigate('/dashboard/workflows');
+        navigate('/workflows');
       } else {
         toast.error(response.error.message);
       }
@@ -49,7 +49,7 @@ const Login = () => {
   );
   useEffect(() => {
     if (token !== null) {
-      navigate('/dashboard/workflows');
+      navigate('/workflows');
     }
   }, [navigate, token]);
   return (
