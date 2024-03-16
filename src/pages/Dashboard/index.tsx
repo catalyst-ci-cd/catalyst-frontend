@@ -12,9 +12,9 @@ const Dashboard = WithAuth(() => {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <div className="bg-primary flex-1 p-5">
+      <div className="bg-primary flex-1 p-8">
         <Routes>
-          <Route index path="workflows" element={<Workflows />} />
+          <Route index element={<Workflows />} />
           <Route path="runs" element={<Runs />} />
           <Route path="runs/:run_id" element={<RunDetails />} />
           <Route path="runs/:run_id/jobs/:job_id" element={<JobDetails />} />

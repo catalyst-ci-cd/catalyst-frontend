@@ -12,7 +12,7 @@ const Landing = () => {
   const { token } = useAuthContext();
   useEffect(() => {
     if (token !== null) {
-      navigate('/dashboard/workflows/');
+      navigate('/workflows');
     }
   }, [navigate, token]);
   return (

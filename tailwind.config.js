@@ -8,6 +8,7 @@ export default {
         secondary: '#2b3137',
         tertiary: '#8590a0',
         accent: '#E48F45',
+        'accent-dark': '#D17E3E',
       },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],

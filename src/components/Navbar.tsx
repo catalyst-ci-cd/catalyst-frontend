@@ -19,31 +19,30 @@ const Navbar = () => {
       <div className="container flex justify-between items-center">
         <div className="text-white uppercase text-2xl font-bold">Catalyst</div>
         <div className="hidden md:block">
-          <ul className="flex items-center gap-4 text-tertiary text-lg">
+          <ul className="flex items-center gap-8 text-tertiary text-lg">
             <li
               onClick={() => scrollToView('header')}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-white transition-all"
             >
               Home
             </li>
             <li
               onClick={() => scrollToView('about')}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-white transition-all"
             >
               About
             </li>
             <li
               onClick={() => scrollToView('features')}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-white transition-all"
             >
               Features
             </li>
-            <li>Contact</li>
           </ul>
         </div>
         <div className="hidden md:block">
           <button className="primary-btn">
-            <Link to="/login">Get Started</Link>
+            <Link to="/login">Login</Link>
           </button>
         </div>
         <div className="md:hidden">
@@ -87,10 +86,9 @@ const Navbar = () => {
               >
                 Features
               </li>
-              <li>Contact</li>
             </ul>
             <button className="primary-btn mt-4">
-              <Link to="/login">Get Started</Link>
+              <Link to="/login">Login</Link>
             </button>
           </div>
         )}
