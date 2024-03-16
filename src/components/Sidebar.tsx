@@ -14,13 +14,11 @@ const Sidebar = () => {
   const [selectedPage, setSelectedPage] = useState<string>();
   const [openSidebarDrawer, setOpenSidebarDrawer] = useState(false);
   useEffect(() => {
-    const page = pages.find(page =>
-      window.location.pathname.includes(page.path),
-    );
+    const path = window.location.pathname;
+    const page = pages.find(page => page.path === path);
     if (page) {
       setSelectedPage(page.name);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.location.pathname]);
   return (
     <>
