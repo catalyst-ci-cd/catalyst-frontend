@@ -3,6 +3,7 @@ import JobResult, { JobResultProps } from './JobResult';
 import LogsContainer, { LogsProps } from './LogsContainer';
 import { useParams } from 'react-router-dom';
 import { getWorkflowResults } from '@/services/WorkflowApi';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 type JobDetailsParamsType = {
   run_id: string;
@@ -11,35 +12,36 @@ type JobDetailsParamsType = {
 
 const JobDetails = () => {
   const { run_id, job_id } = useParams<JobDetailsParamsType>();
+  const { user } = useAuthContext();
 
   const [jobDetails, setJobDetails] = useState<JobResultProps>({
     run_id: '',
     job_id: '',
     name: '',
     duration: '00:01:07',
-    status: 'passed',
+    status: 'success',
   });
   const [logs, setLogs] = useState<LogsProps['steps']>([]);
   const loadJobDetails = useCallback(async () => {
     if (run_id && job_id) {
-      const result = await getWorkflowResults('1', run_id);
+      const result = await getWorkflowResults(user!.id.toString(), run_id);
       if (result.status === 'success') {
-        const jobData = result.data.workflow_result.jobResults.find(
-          job => `${job.id}` === job_id,
+        const jobData = result.data.workflow_result.JobResults.find(
+          job => `${job.ID}` === job_id,
         );
         if (jobData) {
-          setLogs(jobData.stepResults);
+          setLogs(jobData.StepResults);
           setJobDetails({
             run_id: run_id,
             job_id: job_id,
-            name: jobData.name,
-            status: jobData.state,
+            name: jobData.Name,
+            status: jobData.State,
             duration: '00:01:07',
           });
         }
       }
     }
-  }, [run_id, job_id]);
+  }, [run_id, job_id, user]);
   useEffect(() => {
     loadJobDetails();
   }, [loadJobDetails]);

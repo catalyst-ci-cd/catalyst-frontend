@@ -8,6 +8,7 @@ import JobsTable, { IRowData } from './JobsTable';
 import { Link } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { getWorkflowResults } from '@/services/WorkflowApi';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 type RunDetailsParamsType = {
   run_id: string;
@@ -19,32 +20,33 @@ interface IWorkflowRunDetails {
   filename: string;
 }
 
-const workflowRunDetails: IWorkflowRunDetails = {
-  name: 'Workflow Name',
-  status: 'pending',
-  duration: '00:01:07',
-  filename: 'test-workflow1.yml',
-};
-
 const RunDetails = () => {
+  const [workflowRunDetails] = useState<IWorkflowRunDetails>({
+    name: 'Workflow Name',
+    status: 'pending',
+    duration: '00:01:07',
+    filename: 'test-workflow1.yml',
+  });
   const { run_id } = useParams<RunDetailsParamsType>();
   const [rows, setRows] = useState<IRowData[]>([]);
+  const { user } = useAuthContext();
   const loadWorkflowResults = useCallback(async () => {
     if (run_id) {
-      const result = await getWorkflowResults('1', run_id);
+      const result = await getWorkflowResults(user!.id.toString(), run_id);
       if (result.status === 'success') {
-        const rowsData: IRowData[] = result.data.workflow_result.jobResults.map(
+        console.log(result.data.workflow_result);
+        const rowsData: IRowData[] = result.data.workflow_result.JobResults.map(
           jobRun => ({
-            id: jobRun.id,
-            name: jobRun.name,
+            id: jobRun.ID,
+            name: jobRun.Name,
             duration: '00:01:07',
-            status: jobRun.state,
+            status: jobRun.State,
           }),
         );
         setRows(rowsData);
       }
     }
-  }, [run_id]);
+  }, [run_id, user]);
 
   useEffect(() => {
     loadWorkflowResults();

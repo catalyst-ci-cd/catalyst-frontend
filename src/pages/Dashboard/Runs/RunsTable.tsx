@@ -20,7 +20,10 @@ const ColumnDefinition: columnType<IRowData>[] = [
     displayName: 'Status',
     width: 30,
     type: 'custom',
-    content: row => <StatusLabel type={row.status} />,
+    content: row => {
+      console.log(row);
+      return <StatusLabel type={row.data.status} />;
+    },
   },
   {
     name: 'name',
@@ -28,8 +31,8 @@ const ColumnDefinition: columnType<IRowData>[] = [
     type: 'custom',
 
     content: row => (
-      <Link to={`${row.id}`} className="hover:underline text-blue-200">
-        {row.name}
+      <Link to={`${row.data.id}`} className="hover:underline text-blue-200">
+        {row.data.name}
       </Link>
     ),
   },
@@ -39,8 +42,8 @@ const ColumnDefinition: columnType<IRowData>[] = [
     type: 'custom',
 
     content: row => (
-      <Link to={`${row.id}`} className="hover:underline text-blue-200">
-        {row.workflow}
+      <Link to={`${row.data.id}`} className="hover:underline text-blue-200">
+        {row.data.workflow}
       </Link>
     ),
   },
