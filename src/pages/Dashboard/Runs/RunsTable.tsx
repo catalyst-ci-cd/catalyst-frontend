@@ -4,14 +4,15 @@ import StatusLabel, { statusType } from '../../../components/StatusLabel';
 import { Link } from 'react-router-dom';
 import GenericTable, { columnType } from '@/components/GenericTable';
 import { FC } from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
 export interface IRowData {
   id: number;
   status: statusType;
   name: string;
   workflow: string;
-  duration: string;
-  finished_at: string;
+  duration: number;
+  created_at: string;
 }
 
 const ColumnDefinition: columnType<IRowData>[] = [
@@ -49,12 +50,20 @@ const ColumnDefinition: columnType<IRowData>[] = [
   {
     name: 'duration',
     displayName: 'Duration',
-    type: 'text',
+    type: 'custom',
+    content: row => <p className="text-white text-lg">{row.data.duration} s</p>,
   },
   {
-    name: 'finished_at',
-    displayName: 'Finished At',
-    type: 'text',
+    name: 'created at',
+    displayName: 'Created At',
+    type: 'custom',
+    content: row => (
+      <p className="text-white text-lg">
+        {formatDistanceToNow(new Date(row.data.created_at), {
+          addSuffix: true,
+        })}
+      </p>
+    ),
   },
   {
     name: 'actions',

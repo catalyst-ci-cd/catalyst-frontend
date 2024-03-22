@@ -99,6 +99,8 @@ interface IListWorkflowsResultsResponseBody {
     state: statusType;
     workflow_id: number;
     workflow_name: string;
+    duration: number;
+    created_at: string;
   }[];
 }
 export const listWorkflowsResults = async (
@@ -123,29 +125,30 @@ interface IGetWorkflowResultsResponseBody {
   message: string;
   workflow_result: {
     id: number;
-    workflowID: number;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: {
-      time: string;
-      valid: boolean;
-    };
-    JobResults: {
-      ID: number;
-      WorkflowResultID: number;
-      Name: string;
-      State: statusType;
-      TopologicalOrder: number;
-      StepResults: {
-        ID: number;
-        JobResultID: number;
-        TopologicalOrder: number;
-        IsSucceeded: boolean;
-        Logs: string;
+    workflow_id: number;
+    created_at: string;
+    updated_at: string;
+    job_results: {
+      created_at: string;
+      id: number;
+      workflow_result_id: number;
+      duration: number;
+      name: string;
+      state: statusType;
+      topological_order: number;
+      step_results: {
+        id: number;
+        job_result_id: number;
+        topological_order: number;
+        is_succeeded: boolean;
+        logs: string;
+        duration: number;
+        command: string;
       }[];
     }[];
   };
 }
+
 export const getWorkflowResults = async (
   userId: string,
   workflowId: string,

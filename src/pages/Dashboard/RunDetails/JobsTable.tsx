@@ -7,7 +7,7 @@ export interface IRowData {
   id: number;
   status: statusType;
   name: string;
-  duration: string;
+  duration: number;
 }
 const ColumnDefinition: columnType<IRowData>[] = [
   {
@@ -34,7 +34,8 @@ const ColumnDefinition: columnType<IRowData>[] = [
   {
     name: 'duration',
     displayName: 'Duration',
-    type: 'text',
+    type: 'custom',
+    content: row => <p className="text-white text-lg">{row.data.duration} s</p>,
   },
 ];
 
