@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { LoginHandler } from '@/services/AccountApi';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { toast } from 'react-toastify';
+import GithubLogin from '@/components/forms/GithubLogin';
 
 export interface ILoginFormInput {
   email: string;
