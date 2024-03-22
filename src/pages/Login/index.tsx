@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Divider } from '@mui/material';
 import TextField from '@/components/forms/TextField';
 import GoogleLogin from '@/components/forms/GoogleLogin';
+import GithubLogin from '@/components/forms/GithubLogin';
 import React, { useCallback, useEffect, useState } from 'react';
 import { LoginHandler } from '@/services/AccountApi';
 import { useAuthContext } from '@/contexts/AuthContext';
@@ -87,6 +88,7 @@ const Login = () => {
             OR
           </Divider>
           <GoogleLogin />
+          <GithubLogin />
           <div className=" flex flex-col items-center md:flex-row  md:gap-2 justify-center">
             <p className="text-center">Don't have an account?</p>
             <Link
