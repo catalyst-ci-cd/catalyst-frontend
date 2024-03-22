@@ -9,7 +9,6 @@ const pages = [
   { name: 'Add Workflow', path: '/workflows/add-workflow' },
   { name: 'Workflows', path: '/workflows' },
   { name: 'Workflows Runs', path: '/workflows/runs' },
-  { name: 'Jobs', path: '/workflows/jobs' },
 ];
 
 const Sidebar = () => {
