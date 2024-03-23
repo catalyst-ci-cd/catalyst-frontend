@@ -113,7 +113,7 @@ export const ContinueWithGoogleHandler = async (
 export const ContinueWithGithubHandler = async (
   access_token: string,
 ): Promise<Response<ILoginResponseBody>> => {
-  const url = `/users/login/google/callback?code=${access_token}`;
+  const url = `/users/login/github/callback?code=${access_token}&state=authState`;
   try {
     const response = await axiosInstance.get(url);
     return { status: 'success', data: response.data };
