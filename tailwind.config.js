@@ -17,9 +17,6 @@ export default {
         center: true,
         padding: '2rem',
       },
-      fontFamily: {
-        roboto: ['roboto', 'sans-serif'],
-      },
     },
   },
   plugins: [],
