@@ -56,7 +56,7 @@ export const AuthContextProvider: FC<{ children: ReactNode }> = ({
     (async () => {
       const oldToken = localStorage.getItem('token');
       if (oldToken) {
-        setToken(oldToken);
+        await setToken(oldToken);
       }
       setIsLoading(false);
     })();
