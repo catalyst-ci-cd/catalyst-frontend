@@ -31,12 +31,23 @@ export const AuthContextProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [token, setTokenState] = useState<string | null>(null);
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUserState] = useState<UserType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const setToken = useCallback((newToken: string) => {
-    localStorage.setItem('token', newToken);
-    setTokenState(newToken);
+
+  const setUser = useCallback(async (user_token: string) => {
+    const response = await FetchUserData(user_token);
+    if (response.status === 'success') {
+      setUserState(response.data.user);
+    }
   }, []);
+  const setToken = useCallback(
+    async (newToken: string) => {
+      await setUser(newToken);
+      localStorage.setItem('token', newToken);
+      setTokenState(newToken);
+    },
+    [setUser],
+  );
   const value = useMemo<authContextType>(
     () => ({ token, setToken, user, isLoading }),
     [token, setToken, user, isLoading],
@@ -46,10 +57,6 @@ export const AuthContextProvider: FC<{ children: ReactNode }> = ({
       const oldToken = localStorage.getItem('token');
       if (oldToken) {
         setToken(oldToken);
-        const response = await FetchUserData(oldToken);
-        if (response.status === 'success') {
-          setUser(response.data.user);
-        }
       }
       setIsLoading(false);
     })();
