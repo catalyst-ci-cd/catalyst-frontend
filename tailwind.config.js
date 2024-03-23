@@ -7,8 +7,8 @@ export default {
         primary: '#24292e',
         secondary: '#2b3137',
         tertiary: '#8590a0',
-        accent: '#E48F45',
-        'accent-dark': '#D17E3E',
+        accent: '#62B383',
+        'accent-dark': '#0D8050',
       },
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],

@@ -17,8 +17,8 @@ const Runs = () => {
       const rowsData: IRowData[] = result.data.workflows_results.map(
         workflowRun => ({
           id: workflowRun.id,
-          duration: '00:01:07',
-          finished_at: '2 days ago',
+          duration: workflowRun.duration,
+          created_at: workflowRun.created_at,
           name: workflowRun.workflow_name || '-',
           workflow: 'Run #' + workflowRun.id,
           status: workflowRun.state,

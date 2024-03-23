@@ -2,11 +2,12 @@ import { FC } from 'react';
 
 export interface LogsProps {
   steps: {
-    ID: number;
-    JobResultID: number;
-    TopologicalOrder: number;
-    IsSucceeded: boolean;
-    Logs: string;
+    id: number;
+    job_result_id: number;
+    topological_order: number;
+    is_succeeded: boolean;
+    logs: string;
+    command: string;
   }[];
 }
 
@@ -16,15 +17,17 @@ const LogsContainer: FC<LogsProps> = ({ steps }) => {
       <h2 className="mb-4">Logs</h2>
       <div className="bg-black p-5 text-white rounded-2xl flex-1 overflow-auto">
         {steps.map(step => (
-          <p
-            key={step.ID}
-            className={`flex my-2 ${
-              step.IsSucceeded ? 'text-green-500' : 'text-red-500'
-            }`}
-          >
-            <p className="mr-3">&gt;</p>
-            <p className="text-inherit">{step.Logs}</p>
-          </p>
+          <div key={step.id}>
+            <p>{step.command}</p>
+            <div
+              className={`flex my-2 ${
+                step.is_succeeded ? 'text-green-500' : 'text-red-500'
+              }`}
+            >
+              <p className="mr-3">&gt;</p>
+              <p className="text-inherit">{step.logs}</p>
+            </div>
+          </div>
         ))}
       </div>
     </div>

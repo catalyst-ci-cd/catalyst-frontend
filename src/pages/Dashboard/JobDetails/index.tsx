@@ -18,7 +18,7 @@ const JobDetails = () => {
     run_id: '',
     job_id: '',
     name: '',
-    duration: '00:01:07',
+    duration: 0,
     status: 'success',
   });
   const [logs, setLogs] = useState<LogsProps['steps']>([]);
@@ -26,17 +26,17 @@ const JobDetails = () => {
     if (run_id && job_id) {
       const result = await getWorkflowResults(user!.id.toString(), run_id);
       if (result.status === 'success') {
-        const jobData = result.data.workflow_result.JobResults.find(
-          job => `${job.ID}` === job_id,
+        const jobData = result.data.workflow_result.job_results.find(
+          job => `${job.id}` === job_id,
         );
         if (jobData) {
-          setLogs(jobData.StepResults);
+          setLogs(jobData.step_results);
           setJobDetails({
             run_id: run_id,
             job_id: job_id,
-            name: jobData.Name,
-            status: jobData.State,
-            duration: '00:01:07',
+            name: jobData.name,
+            status: jobData.state,
+            duration: jobData.duration,
           });
         }
       }

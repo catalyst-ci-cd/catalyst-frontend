@@ -7,7 +7,7 @@ import { FC, useState } from 'react';
 export interface JobResultProps {
   name: string;
   status: statusType;
-  duration: string;
+  duration: number;
   run_id: string;
   job_id: string;
 }
@@ -29,7 +29,7 @@ const JobResult: FC<JobResultProps> = ({
         </div>
         <p className="flex items-center gap-2 text-white text-xl">
           <IoTimeSharp />
-          {duration}
+          {duration} s
         </p>
         <p className="text-white my-3 text-lg">
           <span className="font-bold">Run ID:</span> #{run_id}
@@ -58,7 +58,7 @@ const JobResult: FC<JobResultProps> = ({
           </div>
           <p className="flex items-center gap-2 text-white text-xl">
             <IoTimeSharp />
-            {duration}
+            {duration} s
           </p>
           <p className="text-white my-3 text-lg">
             <span className="font-bold">Run ID:</span> #{run_id}
